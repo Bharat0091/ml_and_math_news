@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI &amp; Math Weekly Digest — Sep 24–Oct 1, 2026</title>
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --bg-card: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5a5a5a;
+    --accent: #7c3aed;
+    --accent-2: #0d9488;
+    --border: #e4e2dd;
+    --tag-ml-bg: #ede9fe;
+    --tag-ml-text: #5b21b6;
+    --tag-math-bg: #ccfbf1;
+    --tag-math-text: #0f766e;
+    --tag-lab-bg: #fef3c7;
+    --tag-lab-text: #92400e;
+    --tag-blog-bg: #fee2e2;
+    --tag-blog-text: #991b1b;
+    --link: #6d28d9;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121212;
+      --bg-card: #1c1c1e;
+      --text: #eceae6;
+      --text-muted: #a3a19c;
+      --accent: #a78bfa;
+      --accent-2: #5eead4;
+      --border: #2e2e30;
+      --tag-ml-bg: #2e1f5e;
+      --tag-ml-text: #d8c9ff;
+      --tag-math-bg: #0f3d38;
+      --tag-math-text: #99f6e4;
+      --tag-lab-bg: #46330a;
+      --tag-lab-text: #fde68a;
+      --tag-blog-bg: #4a1414;
+      --tag-blog-text: #fecaca;
+      --link: #c4b5fd;
+      --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #121212;
+    --bg-card: #1c1c1e;
+    --text: #eceae6;
+    --text-muted: #a3a19c;
+    --accent: #a78bfa;
+    --accent-2: #5eead4;
+    --border: #2e2e30;
+    --tag-ml-bg: #2e1f5e;
+    --tag-ml-text: #d8c9ff;
+    --tag-math-bg: #0f3d38;
+    --tag-math-text: #99f6e4;
+    --tag-lab-bg: #46330a;
+    --tag-lab-text: #fde68a;
+    --tag-blog-bg: #4a1414;
+    --tag-blog-text: #fecaca;
+    --link: #c4b5fd;
+    --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 32px 16px 64px;
+  }
+
+  header {
+    margin-bottom: 36px;
+  }
+
+  header h1 {
+    font-size: 1.7rem;
+    line-height: 1.25;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+
+  header .subtitle {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    max-width: 60ch;
+  }
+
+  header .daterange {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--tag-ml-bg);
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+
+  nav.toc {
+    margin: 24px 0 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  nav.toc a {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 5px 11px;
+    border-radius: 999px;
+  }
+
+  nav.toc a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  section.group {
+    margin-top: 44px;
+  }
+
+  section.group h2 {
+    font-size: 1.2rem;
+    margin: 0 0 4px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  section.group p.group-desc {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin: 10px 0 20px;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .card h3 {
+    font-size: 1.05rem;
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  .card h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .card h3 a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .tag {
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 3px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .tag.ml { background: var(--tag-ml-bg); color: var(--tag-ml-text); }
+  .tag.math { background: var(--tag-math-bg); color: var(--tag-math-text); }
+  .tag.lab { background: var(--tag-lab-bg); color: var(--tag-lab-text); }
+  .tag.blog { background: var(--tag-blog-bg); color: var(--tag-blog-text); }
+
+  .meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 6px 0 10px;
+  }
+
+  .summary {
+    font-size: 0.93rem;
+    color: var(--text);
+    margin: 0 0 10px;
+  }
+
+  .card a.readlink {
+    font-size: 0.85rem;
+    color: var(--link);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .card a.readlink:hover {
+    text-decoration: underline;
+  }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  footer a { color: var(--link); }
+
+  @media (max-width: 480px) {
+    header h1 { font-size: 1.4rem; }
+    .card { padding: 15px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>AI &amp; Math Weekly Digest</h1>
+  <div class="subtitle">New papers, research ideas, and technical writeups from the past week in machine learning, AI, and mathematics — curated for substance, not headlines.</div>
+  <span class="daterange">September 24 – October 1, 2026</span>
+
+  <nav class="toc">
+    <a href="#ml-papers">ML/AI Papers</a>
+    <a href="#math-papers">Math Papers &amp; Ideas</a>
+    <a href="#lab-writeups">Research Lab Writeups</a>
+    <a href="#blog-posts">Independent Blogs &amp; Math World</a>
+  </nav>
+</header>
+
+<section class="group" id="ml-papers">
+  <h2>ML/AI Papers</h2>
+  <p class="group-desc">New arXiv results in cs.LG / cs.AI / cs.CL / stat.ML this week — dominated by a cluster of papers probing whether agents actually do what they say they're doing.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2609.37725" target="_blank" rel="noopener">Context Language Models</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">Rulin Shao, Shannon Zejiang Shen, Junjie Oscar Yin, et al. (Meta Superintelligence Labs, Univ. of Washington) · arXiv:2609.37725 · Sep 29, 2026</div>
+    <p class="summary">Reframes an LLM's context window as an editable file the model can actively rewrite and compress, rather than a passive append-only log — a genuinely different way to think about memory and long-horizon agent state. Built zero-shot on existing models, CLMs beat state-of-the-art context-management strategies by 11.4% accuracy at 21.5% fewer FLOPs on BrowseComp-Plus, and by 5% accuracy at 59% fewer FLOPs on a 12-hour long-horizon benchmark. Backed by a Meta FAIR-released codebase, with authors including Luke Zettlemoyer and Mike Lewis.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2609.37725" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2609.38108" target="_blank" rel="noopener">Do LLM Agents Execute the Plans They Declare?</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">Subba Reddy Oota, Francisco Herrera, Jordi Cabot Sagrera, et al. · arXiv:2609.38108 · Sep 29, 2026</div>
+    <p class="summary">Directly tests whether agentic LLMs follow through on the plans they verbalize before acting, rather than assuming a stated plan is an honest preview of what the agent will actually do. Finds a measurable, pattern-specific gap between planning-mode declarations and execution — a concrete data point for anyone treating an agent's stated plan as a reliable trust or interpretability signal.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2609.38108" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2609.38107" target="_blank" rel="noopener">Correct Answers, Invalid Traces: What Verifiable Grade-School Math Reveals About Chain-of-Thought Traces</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">Ratish Puduppully, Pranabendu Misra, Paarth Iyer, et al. · arXiv:2609.38107 · Sep 29, 2026</div>
+    <p class="summary">Uses a fully verifiable grade-school-math setting to check whether a model's correct final answer is actually backed by valid intermediate reasoning — and finds plenty of cases where it isn't. Fits a growing, uncomfortable 2026 thread of results showing models reach right answers via invalid reasoning chains, directly undercutting the use of chain-of-thought as an interpretability or faithfulness signal.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2609.38107" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2609.38147" target="_blank" rel="noopener">Thinking Before Thinking: Scaling Agentic Inference Through Meta-Reasoning</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">Paras Dahal, Anton Bakhtin, Taco Cohen, et al. · arXiv:2609.38147 · Sep 29, 2026</div>
+    <p class="summary">Proposes meta-reasoning — reasoning about how to reason and act — as a new axis for test-time scaling in agentic settings, instead of just making chain-of-thought longer. Co-authored by Taco Cohen, known for geometric deep learning and RL work, which should pull in the test-time-compute crowd looking for the next scaling lever beyond raw token count.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2609.38147" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2609.38025" target="_blank" rel="noopener">Dr. OPD: Learning What to Follow for Optimal On-Policy Distillation of Large Language Models</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">Zhenyu Wang, Tianze Wang, Linjun Zhang, et al. · arXiv:2609.38025 · Sep 29, 2026</div>
+    <p class="summary">Tackles a practical pain point in on-policy distillation: once a student model is sampling its own trajectories, which parts of the teacher's signal should it actually imitate? Proposes a learned selection mechanism instead of blindly matching the teacher everywhere — relevant to anyone trying to cheaply distill frontier-model capability into smaller deployed models this cycle.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2609.38025" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2609.38095" target="_blank" rel="noopener">Probe-Space Preconditioning for Fast and Stable Zero-Order Training</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">Francois Chaubard, Mykel J. Kochenderfer, Chris Ré · arXiv:2609.38095 · Sep 29, 2026</div>
+    <p class="summary">A new preconditioning scheme for zeroth-order (gradient-free) fine-tuning, co-authored by Stanford's Chris Ré, aimed at making memory-constrained training — where backprop is too expensive to run — faster and more numerically stable. Zero-order methods matter increasingly for fine-tuning large models on hardware that can't hold full gradients.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2609.38095" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2609.38036" target="_blank" rel="noopener">Gender Bias Across LLMs Is Common and Highly Heterogeneous</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">Edoardo Bolzoni, Valerio Capraro · arXiv:2609.38036 · Oct 1, 2026</div>
+    <p class="summary">A systematic cross-model audit finding that gender-bias patterns differ substantially from model to model — sometimes in opposite directions — meaning the single "average bias" scores that dominate most bias leaderboards may be masking wildly different per-model behavior. A useful corrective for anyone citing one bias number as if it describes "LLMs" as a category.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2609.38036" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+</section>
+
+<section class="group" id="math-papers">
+  <h2>Math Papers &amp; Ideas</h2>
+  <p class="group-desc">A quieter week for new arXiv math results, but one combinatorics conjecture got fully closed, and a decades-old open problem's probabilistic resolution got its moment in the spotlight.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2609.35842" target="_blank" rel="noopener">Crown Graphs Maximise the Representation Number of Bipartite Graphs</a></h3>
+      <span class="tag math">Math</span>
+    </div>
+    <div class="meta">arXiv:2609.35842 · ~Sep 28–30, 2026</div>
+    <p class="summary">Settles a standing conjecture in word-representable graph theory: that crown graphs (complete bipartite graphs minus a perfect matching) have the largest "representation number" among all bipartite graphs of the same order. Proves every bipartite graph on N≥9 vertices has representation number at most ⌈N/4⌉, matching the crown-graph value exactly and closing a gap that a June 2026 paper had only partially resolved — with the hardest remaining cases settled by computer-checked Boolean-satisfiability certificates.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2609.35842" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.quantamagazine.org/mathematicians-harness-randomness-to-crack-a-55-year-old-conjecture-20260928/" target="_blank" rel="noopener">Mathematicians Harness Randomness To Crack a 55-Year-Old Conjecture</a></h3>
+      <span class="tag math">Math</span>
+    </div>
+    <div class="meta">Shalma Wegsman, Quanta Magazine · Sep 28, 2026</div>
+    <p class="summary">Covers the resolution of Graham's rearrangement conjecture — open since the 1970s and inspired by a juggling pattern — via a chain of papers culminating in a proof by Lisa Sauermann and Huy Tuan Pham. Unlike earlier attempts that leaned on additive-combinatorics or graph-theoretic structure, their proof is inherently probabilistic, using anticoncentration estimates on random subsets to surface hidden structure that decades of deterministic approaches had missed.</p>
+    <a class="readlink" href="https://www.quantamagazine.org/mathematicians-harness-randomness-to-crack-a-55-year-old-conjecture-20260928/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+</section>
+
+<section class="group" id="lab-writeups">
+  <h2>Research Lab Writeups</h2>
+  <p class="group-desc">A dense week from Anthropic — a market-design field experiment, a frontier physics calculation, a hostile model audit, and a labor-economics study of robots — plus notable methodology posts from OpenAI and Google Research.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.anthropic.com/research/project-swap" target="_blank" rel="noopener">Project Swap: What Happens When Agents Trade for Us?</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Anthropic · Sep 24, 2026</div>
+    <p class="summary">A field experiment where 201 employees brought books to trade and Claude-powered agents negotiated the exchanges on their behalf, measuring how well an LLM can infer a person's true preferences from a short conversation (61% pairwise agreement with actual rankings, beating popularity- and collaborative-filtering baselines). The striking finding: outcome quality depends far more on preference-understanding accuracy (85% of the gap) than on negotiation tactics (15%) — a concrete empirical angle on the governance questions that arise once agents start transacting on humans' behalf.</p>
+    <a class="readlink" href="https://www.anthropic.com/research/project-swap" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.anthropic.com/research/yes-claude-can-do-nine-loops" target="_blank" rel="noopener">Yes, Claude Can Do Nine Loops</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Anthropic (guest post by physicist Matt von Hippel) · Sep 25, 2026</div>
+    <p class="summary">Describes how Claude computed a nine-loop scattering amplitude in N=4 super Yang-Mills theory — a frontier calculation in theoretical particle physics — via two independent methods, cross-validated by SLAC physicist Lance Dixon, who had previously only reached eight loops by hand. Notable for showing an LLM carrying out a long, finicky symbolic/numerical research calculation autonomously using known techniques, rather than relying on brute compute or a lucky guess.</p>
+    <a class="readlink" href="https://www.anthropic.com/research/yes-claude-can-do-nine-loops" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities" target="_blank" rel="noopener">GLM-5.3 and the Spread of Advanced Cyber Capabilities</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Anthropic · Sep 29, 2026</div>
+    <p class="summary">A hostile technical audit of Zhipu AI's open-weight GLM-5.3, finding it can autonomously build end-to-end cyber exploits — including previously-unknown browser vulnerabilities — at rates comparable to Anthropic's own frontier models. The core finding is that its refusal mechanisms are trivially bypassed via prefilled reasoning tokens (92% success) or "abliteration" (dropping refusal rates from over 90% to 3–12%), illustrating the asymmetric risk when a powerful open-weight model ships with weak safeguards.</p>
+    <a class="readlink" href="https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.anthropic.com/research/what-work-can-robots-do" target="_blank" rel="noopener">What Work Can Robots Do?</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Anthropic · Sep 30, 2026</div>
+    <p class="summary">Builds a "robot exposure index" from O*NET task data across ~900 occupations and 7,594 physical tasks, finding robots can technically perform 74% of physical tasks (34% of total work hours) but are currently cost-competitive for only 0.3% of work. Cross-validated against 50 years of historical wage and employment data in high-exposure occupations, it estimates that at historical ~3%-per-year cost-decline rates, reaching 10% adoption would take roughly 40 years — a methodologically grounded answer to a question usually left to speculation.</p>
+    <a class="readlink" href="https://www.anthropic.com/research/what-work-can-robots-do" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://openai.com/index/disrupting-a-coordinated-model-distillation-campaign/" target="_blank" rel="noopener">Disrupting a Coordinated Model-Distillation Campaign</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">OpenAI · Sep 30, 2026</div>
+    <p class="summary">A threat-intelligence writeup on a coordinated campaign, first observed in July, to extract OpenAI's "protected reasoning" — the model's internal chain-of-work — at scale, in order to train a competing model. Technically interesting for how the attackers manipulated model interactions to surface protected reasoning without any encryption or database compromise, and for OpenAI's choice to share the attack pattern via the Frontier Model Forum to harden industry-wide defenses against adversarial distillation.</p>
+    <a class="readlink" href="https://openai.com/index/disrupting-a-coordinated-model-distillation-campaign/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://research.google/blog/coherent-long-form-video-generation/" target="_blank" rel="noopener">Automating Coherent Long-Form Video Generation</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Google Research · Sep 24, 2026</div>
+    <p class="summary">Introduces a multi-agent "AI video co-director" that treats long-form, multi-shot video generation as a global optimization problem rather than a linear frame-by-frame pipeline, addressing the identity drift and cascading failures that plague existing video models. Combines a scene-continuity planner, a character/environment consistency component, and an iterative prompt-optimization loop — a genuine architectural contribution to video generation rather than a feature release.</p>
+    <a class="readlink" href="https://research.google/blog/coherent-long-form-video-generation/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://research.google/blog/how-diffusion-controller-unifies-and-simplifies-ai-image-generation/" target="_blank" rel="noopener">How Diffusion Controller Unifies and Simplifies AI Image Generation</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Google Research, with CMU, Yale, Google DeepMind · Sep 29, 2026</div>
+    <p class="summary">Presents a control-theoretic unification of diffusion-model steering techniques, framing reverse diffusion sampling as stochastic control within generalized linearly-solvable MDPs. The resulting lightweight side-network attaches to frozen — even closed-source — diffusion backbones and consistently beats prior gray-box steering methods, and even the popular white-box LoRA adapter, on preference-alignment and quality/efficiency tradeoffs.</p>
+    <a class="readlink" href="https://research.google/blog/how-diffusion-controller-unifies-and-simplifies-ai-image-generation/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+</section>
+
+<section class="group" id="blog-posts">
+  <h2>Independent Blogs &amp; Math World</h2>
+  <p class="group-desc">Simon Willison and Sebastian Raschka both wrote on how fast the ground is shifting under practitioners, while mathematicians kept working through what AI means for their field — now with two institutional reports in hand.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://simonwillison.net/2026/Sep/24/harder/" target="_blank" rel="noopener">The More Time I Spend Working With Coding Agents, the More Convinced I Am That They Make Software Engineering Even Harder</a></h3>
+      <span class="tag blog">Blog</span>
+    </div>
+    <div class="meta">Simon Willison · Sep 24, 2026</div>
+    <p class="summary">A pointed argument that coding agents don't lower the bar for software engineering — they raise it. Agents amplify what disciplined, knowledgeable engineers can do, but amplify sloppiness just as readily, so the skill and judgment required to use them well is greater than for traditional coding — grounded in Willison's own hands-on agentic-engineering practice rather than hype.</p>
+    <a class="readlink" href="https://simonwillison.net/2026/Sep/24/harder/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://simonwillison.net/2026/Sep/27/2026-in-llms-so-far/" target="_blank" rel="noopener">2026 in LLMs (So Far)</a></h3>
+      <span class="tag blog">Blog</span>
+    </div>
+    <div class="meta">Simon Willison · Sep 27, 2026</div>
+    <p class="summary">A keynote-derived synthesis tying together the year's major LLM trends into one narrative — what actually mattered in model capability, deployment, and tooling versus what was noise. Functions as a curated signal/noise audit from one of the field's most trusted independent trackers, useful as a year-to-date reference point rather than a one-off hot take.</p>
+    <a class="readlink" href="https://simonwillison.net/2026/Sep/27/2026-in-llms-so-far/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://sebastianraschka.com/blog/2026/focusing-on-llm-post-training.html" target="_blank" rel="noopener">Focusing on Post-Training</a></h3>
+      <span class="tag blog">Blog</span>
+    </div>
+    <div class="meta">Sebastian Raschka · Sep 27, 2026</div>
+    <p class="summary">Uses Fireworks AI's Ember-1 — a post-trained derivative of Moonshot's Kimi K3 that cuts reasoning-trace token usage roughly 40% while holding quality — as a case study for a broader argument: with a limited budget, the highest-leverage way to build a competitive LLM today is to start from a strong open-weight base and invest in post-training rather than pretraining from scratch.</p>
+    <a class="readlink" href="https://sebastianraschka.com/blog/2026/focusing-on-llm-post-training.html" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://magazine.sebastianraschka.com/p/classifier-history-and-jev" target="_blank" rel="noopener">Language Models for Text Classification: From Bag-of-Words to Jev</a></h3>
+      <span class="tag blog">Blog</span>
+    </div>
+    <div class="meta">Sebastian Raschka, "Ahead of AI" · Sep 29, 2026</div>
+    <p class="summary">A visual-guide-style explainer tracing text classification from bag-of-words through RNNs, CNNs, and Transformers up to "Jev," a new proprietary classification model that claims GPT-5.6-level decision accuracy at much lower cost and latency. Notable for placing a buzzy new model into real technical lineage rather than treating it as a black box, and for the discussion it sparked on Hacker News.</p>
+    <a class="readlink" href="https://magazine.sebastianraschka.com/p/classifier-history-and-jev" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://terrytao.wordpress.com/2026/09/24/" target="_blank" rel="noopener">We're Gonna Need a Lot More Mathematicians</a></h3>
+      <span class="tag blog">Blog</span>
+    </div>
+    <div class="meta">Guest post by Amit Sahai (UCLA), on Terence Tao's "What's New" · Sep 24, 2026</div>
+    <p class="summary">Argues that as AI starts producing mathematical and scientific ideas faster than humans can vet them, the field needs far more mathematicians whose explicit job is auditing those ideas. Proposes "deployable intellectual reserves" — teams that spend a term or year verifying AI-derived results, such as an AI-designed reactor design, before anyone trusts or acts on them.</p>
+    <a class="readlink" href="https://terrytao.wordpress.com/2026/09/24/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://terrytao.wordpress.com/2026/09/26/a-value-based-approach-to-mathematics/" target="_blank" rel="noopener">A Value-Based Approach to Mathematics</a></h3>
+      <span class="tag blog">Blog</span>
+    </div>
+    <div class="meta">Guest post by Ivan Corwin (Columbia), on Terence Tao's "What's New" · Sep 26, 2026</div>
+    <p class="summary">Argues the value mathematicians create won't be replaced by AI but magnified by it, citing AI's early ability to connect ideas across subfields and contribute to concrete results like progress on the unit distance conjecture. Frames AI as a de-siloing force in mathematical research rather than a replacement for mathematicians — a direct counterpoint to the more anxious framing elsewhere in this week's math-blog conversation.</p>
+    <a class="readlink" href="https://terrytao.wordpress.com/2026/09/26/a-value-based-approach-to-mathematics/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://terrytao.wordpress.com/2026/09/30/two-reports/" target="_blank" rel="noopener">Two Reports</a></h3>
+      <span class="tag blog">Blog</span>
+    </div>
+    <div class="meta">Terence Tao, "What's New" · Sep 30, 2026</div>
+    <p class="summary">Summarizes two concurrent reports on AI and mathematics released this week: the Advisory Group on Mathematics and Artificial Intelligence's (AGMAI) general recommendations to AI companies on generating math solutions, and a Simons Institute working-group report, "AI and TCS: The Next Six Months," on how AI is reshaping theoretical computer science research practice. Closes out a month in which the math community moved from reacting to AI to actively organizing around it.</p>
+    <a class="readlink" href="https://terrytao.wordpress.com/2026/09/30/two-reports/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+</section>
+
+<footer>
+  Curated automatically from arXiv, research lab blogs, and independent ML/math writers. Compiled Oct 1, 2026. Some very recent arXiv postings (Sep 29 – Oct 1) were cross-verified against independent daily arXiv trackers rather than the arXiv site directly, since this environment's network policy blocks direct access to arxiv.org.
+</footer>
+
+</div>
+</body>
+</html>

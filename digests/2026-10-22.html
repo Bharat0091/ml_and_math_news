@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI &amp; Math Weekly Digest — Oct 15–22, 2026</title>
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --bg-card: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5a5a5a;
+    --accent: #7c3aed;
+    --accent-2: #0d9488;
+    --border: #e4e2dd;
+    --tag-ml-bg: #ede9fe;
+    --tag-ml-text: #5b21b6;
+    --tag-math-bg: #ccfbf1;
+    --tag-math-text: #0f766e;
+    --tag-lab-bg: #fef3c7;
+    --tag-lab-text: #92400e;
+    --tag-blog-bg: #fee2e2;
+    --tag-blog-text: #991b1b;
+    --link: #6d28d9;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121212;
+      --bg-card: #1c1c1e;
+      --text: #eceae6;
+      --text-muted: #a3a19c;
+      --accent: #a78bfa;
+      --accent-2: #5eead4;
+      --border: #2e2e30;
+      --tag-ml-bg: #2e1f5e;
+      --tag-ml-text: #d8c9ff;
+      --tag-math-bg: #0f3d38;
+      --tag-math-text: #99f6e4;
+      --tag-lab-bg: #46330a;
+      --tag-lab-text: #fde68a;
+      --tag-blog-bg: #4a1414;
+      --tag-blog-text: #fecaca;
+      --link: #c4b5fd;
+      --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #121212;
+    --bg-card: #1c1c1e;
+    --text: #eceae6;
+    --text-muted: #a3a19c;
+    --accent: #a78bfa;
+    --accent-2: #5eead4;
+    --border: #2e2e30;
+    --tag-ml-bg: #2e1f5e;
+    --tag-ml-text: #d8c9ff;
+    --tag-math-bg: #0f3d38;
+    --tag-math-text: #99f6e4;
+    --tag-lab-bg: #46330a;
+    --tag-lab-text: #fde68a;
+    --tag-blog-bg: #4a1414;
+    --tag-blog-text: #fecaca;
+    --link: #c4b5fd;
+    --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 32px 16px 64px;
+  }
+
+  header {
+    margin-bottom: 36px;
+  }
+
+  header h1 {
+    font-size: 1.7rem;
+    line-height: 1.25;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+
+  header .subtitle {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    max-width: 60ch;
+  }
+
+  header .daterange {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--tag-ml-bg);
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+
+  nav.toc {
+    margin: 24px 0 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  nav.toc a {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 5px 11px;
+    border-radius: 999px;
+  }
+
+  nav.toc a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  section.group {
+    margin-top: 44px;
+  }
+
+  section.group h2 {
+    font-size: 1.2rem;
+    margin: 0 0 4px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  section.group p.group-desc {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin: 10px 0 20px;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .card h3 {
+    font-size: 1.05rem;
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  .card h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .card h3 a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .tag {
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 3px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .tag.ml { background: var(--tag-ml-bg); color: var(--tag-ml-text); }
+  .tag.math { background: var(--tag-math-bg); color: var(--tag-math-text); }
+  .tag.lab { background: var(--tag-lab-bg); color: var(--tag-lab-text); }
+  .tag.blog { background: var(--tag-blog-bg); color: var(--tag-blog-text); }
+
+  .meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 6px 0 10px;
+  }
+
+  .summary {
+    font-size: 0.93rem;
+    color: var(--text);
+    margin: 0 0 10px;
+  }
+
+  .card a.readlink {
+    font-size: 0.85rem;
+    color: var(--link);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .card a.readlink:hover {
+    text-decoration: underline;
+  }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  footer a { color: var(--link); }
+
+  @media (max-width: 480px) {
+    header h1 { font-size: 1.4rem; }
+    .card { padding: 15px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>AI &amp; Math Weekly Digest</h1>
+  <div class="subtitle">New papers, research ideas, and technical writeups from the past week in machine learning, AI, and mathematics — curated for substance, not headlines.</div>
+  <span class="daterange">October 15 – 22, 2026</span>
+
+  <nav class="toc">
+    <a href="#ml-papers">ML/AI Papers</a>
+    <a href="#math-papers">Math Papers &amp; Ideas</a>
+    <a href="#lab-writeups">Research Lab Writeups</a>
+    <a href="#blog-posts">Independent Blogs &amp; Math World</a>
+  </nav>
+</header>
+
+<section class="group" id="ml-papers">
+  <h2>ML/AI Papers</h2>
+  <p class="group-desc">A theory-heavy week: several papers took attention mechanisms apart with tools borrowed from formal verification, statistical physics, and training-dynamics analysis, while others pushed on how far test-time looping and AI-assisted proof-checking can go.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2610.25341" target="_blank" rel="noopener">Formally Verified Autoresearch for Analyzing the Expressivity of Multi-Head Attention</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2610.25341 · to appear at NeurIPS 2026</div>
+    <p class="summary">A frontier model was turned loose on a genuine open question in theory — how many attention heads a one-layer, attention-only transformer needs to represent a given Boolean function — and asked to generate conjectures, prove them, and have the proofs machine-checked in Lean, with humans only posing the question and reviewing results. It nails the exact head count for every symmetric Boolean function and shows a natural lower bound (threshold degree) isn't always tight. A concrete, independently-checkable data point in the "can AI produce new math" debate dominating this month's headlines — small and theorem-shaped rather than headline-shaped.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2610.25341" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2610.20748" target="_blank" rel="noopener">Interpreting Language Model Parameters</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2610.20748 · Goodfire</div>
+    <p class="summary">Most mechanistic interpretability work studies activations — what a model computes on a given input — rather than the weights themselves. This paper pushes the Goodfire team's parameter-decomposition line of work further, breaking a model's weights directly into sparse, largely independent subcomponents that each implement a recognizable piece of its learned algorithm, and scales the approach toward full language models instead of toy nets. If it holds up at scale, it's a genuinely different lens on interpretability than the activation-patching tools most of the field has converged on.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2610.20748" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2610.11570" target="_blank" rel="noopener">Scaling to Tens of Thousands of Test-Time Iterations with Loop-Native Attention Residuals</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2610.11570 · "InfiLoop"</div>
+    <p class="summary">Looped transformers — reusing the same block repeatedly at inference time instead of adding depth — are a cheap way to buy test-time compute, but accuracy normally plateaus or degrades after a few dozen iterations. This paper redesigns the residual connections to be loop-aware and reports continued accuracy gains on Sudoku-Extreme past 20,000 effective iterations, far beyond where prior looped architectures saturate — a concrete architectural fix rather than another prompting trick for the test-time-compute scaling problem.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2610.11570" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2610.16709" target="_blank" rel="noopener">Attention-Graph Curvature for the Verification of Mathematical Reasoning</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2610.16709</div>
+    <p class="summary">Formal proof assistants can mechanically verify a Lean or Coq proof, but most LLM mathematical reasoning is produced in natural language that no such verifier can check — exactly the gap sitting underneath this month's fights over unverified AI math claims. This paper proposes treating the geometry (curvature) of a model's internal attention graph as a signal for whether a chain of reasoning is actually sound, offering a cheap proxy for correctness when a real proof checker isn't available.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2610.16709" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2610.21539" target="_blank" rel="noopener">Reinforcement Learning-driven Diffusion Models: Language, Vision, and Beyond</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2610.21539 · survey</div>
+    <p class="summary">As diffusion-based language and vision models increasingly get RL-tuned the way autoregressive LLMs do, this is the first attempt to systematically organize that fast-growing literature — by trajectory level (full sequence vs. step-wise) and reward density — and it runs its own empirical analysis of how different RL formulations actually reshape a diffusion model's generative behavior. Useful as a map of a subfield that's been publishing faster than anyone can track.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2610.21539" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2610.17347" target="_blank" rel="noopener">On the Statistical Mechanics of Attention</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2610.17347</div>
+    <p class="summary">Continues a line of work treating softmax attention as a modern Hopfield network and borrowing tools from spin-glass physics to analyze it. This paper identifies something like a phase transition in attention's behavior — a "glassy," unstable regime versus a "robust-inference" regime, depending on how sharply attention concentrates — giving a physical-systems explanation for failure modes like attention collapse that have mostly been described empirically until now.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2610.17347" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2610.20337" target="_blank" rel="noopener">Training Dynamics of Transformers on Unbounded Inputs: Attention Learning Can Lag Output Layer Learning</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2610.20337</div>
+    <p class="summary">Studies what happens during training when input sequences can grow without bound, and finds a specific asymmetry: the output/unembedding layer learns to fit the training distribution well before the attention mechanism learns to route information correctly across long inputs. That lag helps explain why a model can look fully trained (low loss) while still generalizing poorly to inputs longer than anything seen in training — a mechanistic account of a failure mode usually just reported as "doesn't extrapolate to long context."</p>
+    <a class="readlink" href="https://arxiv.org/abs/2610.20337" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+</section>
+
+<section class="group" id="math-papers">
+  <h2>Math Papers &amp; Ideas</h2>
+  <p class="group-desc">Steady progress on several long-running, cleanly-stated open problems — a sharper gap bound on the decades-old Lonely Runner Conjecture, tighter zero-spacing estimates for Dirichlet L-functions, and new exact formulas for modular-curve invariants that previously only had partial answers.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2610.23790" target="_blank" rel="noopener">Near-Optimal Gap in the Lonely Runner Conjecture</a></h3>
+      <span class="tag math">Math</span>
+    </div>
+    <div class="meta">arXiv:2610.23790 · Number Theory / Combinatorics</div>
+    <p class="summary">The Lonely Runner Conjecture — that n runners on a circular track at distinct constant speeds will each, at some moment, be at least 1/n of the track's length away from every other runner — is one of the cleanest-sounding open problems in combinatorics, still unproven in general after decades. A 2025 breakthrough pushed the best unconditional lower bound on that minimal gap past the trivial 1/(2n) threshold for the first time in a meaningful way; this paper tightens the bound further, closing in on what's provable without resolving the full conjecture.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2610.23790" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2610.28527" target="_blank" rel="noopener">Small and Large Gaps Between Zeros of Dirichlet L-functions</a></h3>
+      <span class="tag math">Math</span>
+    </div>
+    <div class="meta">arXiv:2610.28527 · Number Theory</div>
+    <p class="summary">How tightly can consecutive zeros of a Dirichlet L-function — the zeta-function's cousins attached to arithmetic progressions — cluster together, or spread apart? Classical results of Siegel and others give bounds in both directions but leave a real gap between what's provable and what's conjectured; this paper narrows that gap for both the smallest and largest spacings, a technical advance that feeds directly into the zero-density estimates used across analytic number theory.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2610.28527" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2610.22299" target="_blank" rel="noopener">An Induced Subgraph Paradigm for Strongly Regular Graph Constructions</a></h3>
+      <span class="tag math">Math</span>
+    </div>
+    <div class="meta">arXiv:2610.22299 · Combinatorics</div>
+    <p class="summary">Strongly regular graphs — where every two adjacent vertices share the same number of common neighbors, and every two non-adjacent vertices do too — are rare, highly symmetric objects central to design theory and coding theory. This paper proposes building new ones by engineering their induced subgraphs from the ground up rather than searching known families, a constructive approach aimed at turning up strongly regular graphs with parameter sets nobody has produced before.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2610.22299" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2610.27008" target="_blank" rel="noopener">Least Singular Values of Gaussian Matrices with Deterministic Shifts</a></h3>
+      <span class="tag math">Math</span>
+    </div>
+    <div class="meta">arXiv:2610.27008 · Probability</div>
+    <p class="summary">A random matrix shifted by a fixed deterministic matrix (rather than another random one) is harder to analyze near its spectral edge, where the smallest singular value lives — and that smallest singular value governs the matrix's invertibility and numerical condition number. This paper sharpens the known tail bounds on how small that value can get, extending a line of results tracing back to Sankar–Spielman–Teng's smoothed-analysis work that underlies why randomized numerical algorithms behave well in practice.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2610.27008" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2610.28550" target="_blank" rel="noopener">Cutoff Profile for the Balanced Generalized Bernoulli–Laplace Model</a></h3>
+      <span class="tag math">Math</span>
+    </div>
+    <div class="meta">arXiv:2610.28550 · Probability</div>
+    <p class="summary">The Bernoulli–Laplace model is a classical Markov chain describing two urns exchanging balls, famous as one of the first examples where mathematicians discovered "cutoff" — a chain that stays far from equilibrium for a long time, then collapses to near-equilibrium abruptly, in a narrow window. This paper works out the precise shape of that cutoff window, not merely that cutoff happens, for a more general balanced version of the model — the kind of sharp quantitative result that mixing-time theory for named chains doesn't always achieve.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2610.28550" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2610.23690" target="_blank" rel="noopener">Cuspidal Class Number Formulae for Intermediate Modular Curves of Prime Level</a></h3>
+      <span class="tag math">Math</span>
+    </div>
+    <div class="meta">arXiv:2610.23690 · Number Theory</div>
+    <p class="summary">Modular curves sit at the crossroads of number theory and arithmetic geometry, and their cuspidal class groups — algebraic invariants attached to the curve's "boundary" points — have had exact formulas for only a handful of the simplest cases, like X₀(p) and X₁(p). This paper extends exact class-number formulas to a broader family of intermediate modular curves at prime level, filling in curves that previously only had partial or conjectural answers.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2610.23690" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+</section>
+
+<section class="group" id="lab-writeups">
+  <h2>Research Lab Writeups</h2>
+  <p class="group-desc">A lighter week for lab research posts, but a good one: Anthropic shipped two genuine applied-science results (drug design and quantum circuit compilation) alongside a data-driven look at its own labor-market predictions, and DeepMind published a real agentic antibiotic-discovery lead, with the usual caveat that wet-lab confirmation is still pending.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.anthropic.com/research/claude-scorpion-toxin-binder-design" target="_blank" rel="noopener">How Claude Designed Protein Binders Against Scorpion Neurotoxins</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Anthropic, Science · Oct 20, 2026</div>
+    <p class="summary">Scorpion envenomation kills an estimated several thousand people a year, overwhelmingly in regions with poor access to antivenom, and existing antivenoms are expensive, serum-derived products with real side effects. This writeup reports using Claude to design novel protein binders that neutralize scorpion neurotoxins directly — a computational-biology workflow in the spirit of recent AlphaFold-descended binder-design tools, aimed at a neglected-disease target that commercial antivenom R&amp;D has largely left alone.</p>
+    <a class="readlink" href="https://www.anthropic.com/research/claude-scorpion-toxin-binder-design" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.anthropic.com/research/designing-efficient-quantum-circuits" target="_blank" rel="noopener">Designing More Efficient Quantum Circuits with Claude</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Anthropic, Science · Oct 16, 2026</div>
+    <p class="summary">Compiling a quantum algorithm into the smallest possible circuit — fewest gates, shallowest depth — is a genuinely hard combinatorial optimization problem that still leans heavily on human expertise. This post reports using Claude to find circuit decompositions more efficient than standard compilers produce for several benchmark algorithms, a narrow but concrete example of an LLM doing useful work inside a domain with a precise, checkable notion of "better."</p>
+    <a class="readlink" href="https://www.anthropic.com/research/designing-efficient-quantum-circuits" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.anthropic.com/research/ai-expectations-gap" target="_blank" rel="noopener">The AI Expectations Gap</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Anthropic, Economics · Oct 16, 2026</div>
+    <p class="summary">Surveys workers on what they expect AI to do to their jobs and compares that against what's actually happening inside Anthropic and among its enterprise customers, finding a persistent mismatch in both directions — some predicted disruptions haven't materialized, while other changes nobody anticipated have shown up anyway. Part of a same-day package with companion posts on hiring patterns and worker sentiment; the most data-driven of the three, and a useful corrective to both doom and hype narratives about AI's labor impact.</p>
+    <a class="readlink" href="https://www.anthropic.com/research/ai-expectations-gap" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://deepmind.google/blog/accelerating-antimicrobial-discovery/" target="_blank" rel="noopener">Accelerating Antimicrobial Discovery</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Google DeepMind, Science · Oct 15, 2026</div>
+    <p class="summary">Using DeepMind's "Antigravity" agentic research workbench, biologists narrowed millions of UniProt entries down to a shortlist and flagged a 97-amino-acid bacteriocin candidate from <em>Streptococcus pseudopneumoniae</em> as a plausible new antimicrobial peptide, backed by sequence, structure, and genomic-neighborhood evidence. It's now moving into wet-lab validation alongside other candidates from the same pipeline — a real, if still unconfirmed, example of AI-assisted hit-finding in an antibiotic-discovery pipeline that's been short on new chemical leads for decades.</p>
+    <a class="readlink" href="https://deepmind.google/blog/accelerating-antimicrobial-discovery/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+</section>
+
+<section class="group" id="blog-posts">
+  <h2>Independent Blogs &amp; Math World</h2>
+  <p class="group-desc">The AI-and-mathematics reckoning that's dominated math discourse all month kept deepening: Quanta dug into the one OpenAI result that actually survived expert scrutiny, Terence Tao's blog turned into a running symposium on what's left for human mathematicians to do, and outside researchers published pointed technical critiques of both a major materials-discovery database and a frontier lab's own safety-report methodology.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.quantamagazine.org/ai-proved-the-quasi-riemann-hypothesis-what-happens-now-20261019/" target="_blank" rel="noopener">AI Proved the Quasi-Riemann Hypothesis. What Happens Now?</a></h3>
+      <span class="tag blog">Blog</span>
+    </div>
+    <div class="meta">Quanta Magazine, Konstantin Kakaes · Oct 19, 2026</div>
+    <p class="summary">Of the hundreds of math results OpenAI released on October 6, this is the one that's actually held up under sustained expert scrutiny: a proof of the "quasi-Riemann hypothesis," a meaningful weakening of the real Riemann hypothesis. Mathematician Jared Duker Lichtman calls it the most significant AI-for-math result so far "by quite a margin," and the piece's best detail is that two mathematicians, Maksym Radziwiłł and Alexander Dunn, were visibly surprised the proof repurposed techniques they themselves had developed years earlier — a rare case of an AI math claim being traced, verified, and credited rather than just announced.</p>
+    <a class="readlink" href="https://www.quantamagazine.org/ai-proved-the-quasi-riemann-hypothesis-what-happens-now-20261019/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://terrytao.wordpress.com/2026/10/18/will-it-be-a-golden-age-or-a-dark-age-for-mathematics-and-science/" target="_blank" rel="noopener">Will It Be a Golden Age or a Dark Age for Mathematics (and Science)?</a></h3>
+      <span class="tag blog">Blog</span>
+    </div>
+    <div class="meta">Terence Tao, "What's New" · Oct 18, 2026</div>
+    <p class="summary">Tao lays out the split-decision case directly in the title: AI tools are genuinely expanding what's provable and explorable, but the same abundance risks drowning out the judgment, taste, and slow accumulation of understanding that made mathematics a human practice rather than just a stream of verified outputs. Less a verdict than a framework for weighing both possibilities at once, written days after Tao reportedly described mathematics' "romantic era" as over in a separate interview.</p>
+    <a class="readlink" href="https://terrytao.wordpress.com/2026/10/18/will-it-be-a-golden-age-or-a-dark-age-for-mathematics-and-science/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://terrytao.wordpress.com/2026/10/21/mathematics-is-a-subject-for-the-young/" target="_blank" rel="noopener">Mathematics Is a Subject for the Young</a></h3>
+      <span class="tag blog">Blog</span>
+    </div>
+    <div class="meta">Guest post by Tristan Buckmaster, on Terence Tao's blog · Oct 21, 2026</div>
+    <p class="summary">A guest essay arguing that mathematics as a field is about to become "unrecognizable" within a few years, and that the people best positioned to adapt are students who haven't yet built their identity around pre-AI ways of working — a generational-change argument that's blunter than most of the hedging that's characterized this month's commentary.</p>
+    <a class="readlink" href="https://terrytao.wordpress.com/2026/10/21/mathematics-is-a-subject-for-the-young/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://terrytao.wordpress.com/2026/10/17/starting-a-new-journal/" target="_blank" rel="noopener">Starting a New Journal</a></h3>
+      <span class="tag blog">Blog</span>
+    </div>
+    <div class="meta">Guest post by Shaoming Guo, on Terence Tao's blog · Oct 17, 2026</div>
+    <p class="summary">A group of mathematicians announces plans to launch a new journal, explicitly motivated by the same pressures reshaping the field this month: a need for faster, more transparent, more rigorously-refereed publication norms as the volume of mathematical claims — human and AI-generated alike — keeps rising. A concrete institutional response rather than just more commentary on the state of the field.</p>
+    <a class="readlink" href="https://terrytao.wordpress.com/2026/10/17/starting-a-new-journal/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://cen.acs.org/research-integrity/Google-DeepMind-structures-near-duplicates-questionable/104/web/2026/10" target="_blank" rel="noopener">Google DeepMind AI Crystallography Database Includes Near-Duplicate Structures and Unrealistic Compounds</a></h3>
+      <span class="tag blog">Blog</span>
+    </div>
+    <div class="meta">Chemical &amp; Engineering News (ACS) · October 2026</div>
+    <p class="summary">Outside crystallographers, led by Vitaliy Kurlin's group at Liverpool, report that DeepMind's GNoME database of AI-predicted stable crystal structures — the basis of a widely-cited 2023 Nature paper claiming 380,000+ new materials — contains a substantial number of near-duplicate entries, both internally and against known databases, with more than 10% of its "novel" stable structures potentially redundant. A sober, technically grounded counterpoint to the headline framing of AI-driven materials discovery, and a reminder that generated scientific databases need the same duplicate- and sanity-checking as generated proofs.</p>
+    <a class="readlink" href="https://cen.acs.org/research-integrity/Google-DeepMind-structures-near-duplicates-questionable/104/web/2026/10" target="_blank" rel="noopener">Read article →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://lesswrong.com/posts/7jmfDBu2GLCfdwSte/about-a-quarter-of-them-contained-bugs-gemini-4-s-ml-r-and-d" target="_blank" rel="noopener">"About a Quarter of Them Contained Bugs": Gemini 4's ML R&amp;D Benchmark, Examined</a></h3>
+      <span class="tag blog">Blog</span>
+    </div>
+    <div class="meta">LessWrong · October 2026</div>
+    <p class="summary">A technical dissection of a headline claim buried in Google DeepMind's Gemini 4 "Argon" safety report — that internal auditing found no statistically significant acceleration of AI research from AI itself. This post audits the underlying research-engineering benchmark the report leans on and finds roughly a quarter of its scored tasks are themselves unpassable or buggy, undercutting the report's "no acceleration" conclusion without claiming the opposite is true either — exactly the kind of adversarial benchmark-auditing that's normally much harder to do on a closed internal eval.</p>
+    <a class="readlink" href="https://lesswrong.com/posts/7jmfDBu2GLCfdwSte/about-a-quarter-of-them-contained-bugs-gemini-4-s-ml-r-and-d" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+</section>
+
+<footer>
+  Curated automatically from arXiv, research lab blogs, and independent ML/math writers. Compiled Oct 22, 2026. This environment's network policy blocks direct access to arxiv.org and most lab/blog domains (only anthropic.com resolved directly), so this edition was assembled via web-search cross-referencing rather than direct fetches of most primary sources; paper dates and figures are reported as found and may be approximate where sources disagreed or could not be independently confirmed.
+</footer>
+
+</div>
+</body>
+</html>

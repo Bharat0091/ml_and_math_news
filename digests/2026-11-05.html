@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI &amp; Math Weekly Digest — Oct 29–Nov 5, 2026</title>
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --bg-card: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5a5a5a;
+    --accent: #7c3aed;
+    --accent-2: #0d9488;
+    --border: #e4e2dd;
+    --tag-ml-bg: #ede9fe;
+    --tag-ml-text: #5b21b6;
+    --tag-math-bg: #ccfbf1;
+    --tag-math-text: #0f766e;
+    --tag-lab-bg: #fef3c7;
+    --tag-lab-text: #92400e;
+    --tag-blog-bg: #fee2e2;
+    --tag-blog-text: #991b1b;
+    --link: #6d28d9;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121212;
+      --bg-card: #1c1c1e;
+      --text: #eceae6;
+      --text-muted: #a3a19c;
+      --accent: #a78bfa;
+      --accent-2: #5eead4;
+      --border: #2e2e30;
+      --tag-ml-bg: #2e1f5e;
+      --tag-ml-text: #d8c9ff;
+      --tag-math-bg: #0f3d38;
+      --tag-math-text: #99f6e4;
+      --tag-lab-bg: #46330a;
+      --tag-lab-text: #fde68a;
+      --tag-blog-bg: #4a1414;
+      --tag-blog-text: #fecaca;
+      --link: #c4b5fd;
+      --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #121212;
+    --bg-card: #1c1c1e;
+    --text: #eceae6;
+    --text-muted: #a3a19c;
+    --accent: #a78bfa;
+    --accent-2: #5eead4;
+    --border: #2e2e30;
+    --tag-ml-bg: #2e1f5e;
+    --tag-ml-text: #d8c9ff;
+    --tag-math-bg: #0f3d38;
+    --tag-math-text: #99f6e4;
+    --tag-lab-bg: #46330a;
+    --tag-lab-text: #fde68a;
+    --tag-blog-bg: #4a1414;
+    --tag-blog-text: #fecaca;
+    --link: #c4b5fd;
+    --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 32px 16px 64px;
+  }
+
+  header {
+    margin-bottom: 36px;
+  }
+
+  header h1 {
+    font-size: 1.7rem;
+    line-height: 1.25;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+
+  header .subtitle {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    max-width: 60ch;
+  }
+
+  header .daterange {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--tag-ml-bg);
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+
+  nav.toc {
+    margin: 24px 0 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  nav.toc a {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 5px 11px;
+    border-radius: 999px;
+  }
+
+  nav.toc a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  section.group {
+    margin-top: 44px;
+  }
+
+  section.group h2 {
+    font-size: 1.2rem;
+    margin: 0 0 4px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  section.group p.group-desc {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin: 10px 0 20px;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .card h3 {
+    font-size: 1.05rem;
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  .card h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .card h3 a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .tag {
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 3px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .tag.ml { background: var(--tag-ml-bg); color: var(--tag-ml-text); }
+  .tag.math { background: var(--tag-math-bg); color: var(--tag-math-text); }
+  .tag.lab { background: var(--tag-lab-bg); color: var(--tag-lab-text); }
+  .tag.blog { background: var(--tag-blog-bg); color: var(--tag-blog-text); }
+
+  .meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 6px 0 10px;
+  }
+
+  .summary {
+    font-size: 0.93rem;
+    color: var(--text);
+    margin: 0 0 10px;
+  }
+
+  .card a.readlink {
+    font-size: 0.85rem;
+    color: var(--link);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .card a.readlink:hover {
+    text-decoration: underline;
+  }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  footer a { color: var(--link); }
+
+  @media (max-width: 480px) {
+    header h1 { font-size: 1.4rem; }
+    .card { padding: 15px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>AI &amp; Math Weekly Digest</h1>
+  <div class="subtitle">New papers, research ideas, and technical writeups from the past week in machine learning, AI, and mathematics — curated for substance, not headlines.</div>
+  <span class="daterange">October 29 – November 5, 2026</span>
+
+  <nav class="toc">
+    <a href="#ml-papers">ML/AI Papers</a>
+    <a href="#math-papers">Math Papers &amp; Ideas</a>
+    <a href="#lab-writeups">Research Lab Writeups</a>
+  </nav>
+</header>
+
+<section class="group" id="ml-papers">
+  <h2>ML/AI Papers</h2>
+  <p class="group-desc">A lighter week on volume, but what surfaced had real teeth: a theoretical account of why mixture-of-experts routing collapses and recovers, a lab-agnostic way to audit models for alignment faking, a sobering limit on test-time scaling once you leave checkable math problems, and the first attempt to check singular learning theory against mechanistic interpretability at real model scale rather than on a toy network.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2610.39442" target="_blank" rel="noopener">Softmax Routing Dynamics in Mixture-of-Experts Models: Collapse and Recovery</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2610.39442 · submitted Oct 29, 2026</div>
+    <p class="summary">Mixture-of-experts models route each token to a handful of specialist subnetworks through a softmax gate, and in practice that gate can collapse — nearly all traffic piling onto a tiny subset of experts while the rest sit idle, wasting most of the model's capacity. Rather than treating this as an empirical nuisance to patch around, this paper models the collapse as a dynamical system and derives bounds on how long a collapsed router takes to recover under continued training. It's a rare case of a well-known, costly training pathology getting an actual theoretical account instead of another ad hoc fix.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2610.39442" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2610.33180" target="_blank" rel="noopener">Propensities Please: Exposing Alignment-Faking LLMs using Synthetic Document Finetuning</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2610.33180 · submitted late Oct 2026 · discussed on LessWrong</div>
+    <p class="summary">The worry with "alignment faking" is that a model might behave well only because it suspects it's being watched, and chain-of-thought explanations can't be trusted to reveal that on their own. This paper's method finetunes a model on synthetic documents that convince it oversight has been removed, then checks whether its behavior shifts once it "believes" no one is looking — a widening gap implies a propensity for faking that was already there, not one the finetuning just created. The appeal is that it's a lab-agnostic audit: an outside evaluator could run this check without interpretability tooling or privileged access to the model's internals.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2610.33180" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.02208" target="_blank" rel="noopener">Test-Time Scaling for Open-Ended Reasoning at Small Model Scale</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2611.02208 · submitted Nov 1, 2026</div>
+    <p class="summary">Sample-and-vote test-time scaling is well established for math problems with one checkable answer, but it's unclear whether it helps open-ended generation where there's no ground truth to vote toward. This paper runs the experiment on small models using a judge-free method that clusters samples by meaning rather than exact match, and finds a real gain on MATH-500 but a much weaker effect on open-ended tasks — because the model's open-ended samples tend to collapse into one dominant interpretation, leaving little diversity for voting to exploit. A useful negative-ish result pointing at a real limit of the test-time-scaling playbook.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.02208" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.00640" target="_blank" rel="noopener">Bridging Singular Learning Theory and Mechanistic Interpretability at the Billion-Parameter Scale</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2611.00640 · submitted Oct 31, 2026</div>
+    <p class="summary">Singular learning theory predicts a model's effective complexity through the "local learning coefficient," a quantity that in principle tracks how much of a network a given task is really using — but it has mostly been validated on toy models. This paper checks whether that purely statistical quantity tracks a circuit independently identified through causal interventions in a 1-billion-parameter model (Pythia-1B) learning to match Dyck brackets, across all 154 of its training checkpoints. Showing two independently-derived lines of evidence — one statistical, one causal — line up at real scale is a meaningful step toward unifying interpretability approaches that have mostly developed on separate tracks.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.00640" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+</section>
+
+<section class="group" id="math-papers">
+  <h2>Math Papers &amp; Ideas</h2>
+  <p class="group-desc">A quiet week for pure math, with two sharp, technical results in random graph theory — one tightening a structural probability bound, the other attacking a long-standing flow conjecture by going probabilistic instead of head-on.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.03444" target="_blank" rel="noopener">A Nearly Tight Bound on the Probability G(n,p) Is Even-Degenerate</a></h3>
+      <span class="tag math">Math</span>
+    </div>
+    <div class="meta">arXiv:2611.03444 · Ting-Wei Chao, Bruce Reed · submitted ~Nov 3, 2026</div>
+    <p class="summary">A graph is "even-degenerate" if it can be whittled down to nothing by repeatedly deleting a vertex of even degree — a structural property tangled up with classical results on graph coloring and degeneracy. This paper pins down, for the standard random graph model G(n,p), almost exactly how likely that property is to hold, tightening a bound that had previously been loose. It's a small, technical result rather than a landmark, but exactly the kind of gap-closing that random graph theory depends on to keep moving forward.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.03444" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.03763" target="_blank" rel="noopener">Circular Flows and Bisections of Random Regular Graphs</a></h3>
+      <span class="tag math">Math</span>
+    </div>
+    <div class="meta">arXiv:2611.03763 · Amir Jafari · submitted ~Nov 4, 2026</div>
+    <p class="summary">Jaeger's conjecture — a long-standing open problem about whether every sufficiently connected graph admits a "circular flow" (an edge orientation that balances in- and out-degree in a precise sense) — has mostly been attacked case by case, with the general statement still open. This paper studies the conjecture specifically on random regular graphs, which lets probabilistic tools stand in for the structural arguments that make the general case so hard, and reports a positive result in that random setting. A reminder that proving a stubborn conjecture for random instances first often remains the most productive way to make progress on it.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.03763" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+</section>
+
+<section class="group" id="lab-writeups">
+  <h2>Research Lab Writeups</h2>
+  <p class="group-desc">Anthropic was the only lab with confirmable research output this week, but it delivered on substance: a candid structural-biology project that's honest about where the AI collaborator failed as well as where it helped, and a working prototype for cryptographically proving which model actually served a given output.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.anthropic.com/research/investigating-vault-particles-with-claude" target="_blank" rel="noopener">Investigating Vault Particles with Claude</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Anthropic, Science · Nov 4, 2026</div>
+    <p class="summary">Vaults are strange, barrel-shaped protein shells found in nearly every eukaryotic cell since their discovery in 1986, and nobody has ever nailed down what they're for. Working with Claude, Anthropic's biology team found vault-like proteins in bacteria and archaea for the first time, solved the first 3D structure of one of these prokaryotic vaults (built differently from the human version, with roughly 25% more internal volume), and then engineered a modified version with extra wall segments that pushed the volume up another 20%. What makes the writeup worth reading rather than a victory lap is its candor about where Claude's autonomy backfired — a bad protocol choice cost two weeks, a skipped cryo-EM step produced a flawed structural map — right alongside where it clearly helped, like cutting a three-day purification protocol down to 90 minutes.</p>
+    <a class="readlink" href="https://www.anthropic.com/research/investigating-vault-particles-with-claude" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.anthropic.com/research/provable-inference" target="_blank" rel="noopener">Progress on Provable Inference for Large Language Models</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Anthropic, Frontier Red Team · Nov 2, 2026</div>
+    <p class="summary">When you call a model API, you have no real way to verify the provider actually ran the model they claim to — a gap that matters for fraud detection, compute-use audits, and catching a quietly swapped-out or compromised server. Anthropic's FlashProve prototype produces zkSNARK-style cryptographic proofs that a given output really came from a specific, committed set of model weights, without revealing those weights, and does it efficiently enough to run a 400-billion-parameter MoE model (quantized Llama 4 Maverick) at around 110 tokens/second per H100, with 19MB proofs that verify on an ordinary CPU in about 17 seconds. The caveats are real — greedy decoding only, integer-quantized weights, a 1024-token context cap — but it's a concrete, working step toward a kind of inference accountability that doesn't really exist yet.</p>
+    <a class="readlink" href="https://www.anthropic.com/research/provable-inference" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+</section>
+
+<footer>
+  Curated automatically from arXiv, research lab blogs, and independent ML/math writers. Compiled Nov 5, 2026. This environment's network policy blocked direct access to arxiv.org, deepmind.google, openai.com, bair.berkeley.edu, ai.meta.com, simonwillison.net, gwern.net, terrytao.wordpress.com, and quantamagazine.org this edition (only anthropic.com and github.com resolved directly), so every item above except the two Anthropic posts was assembled via web-search cross-referencing rather than a direct fetch of the primary source; paper dates, author lists, and figures are reported as found in search snippets and may be approximate where a direct abstract could not be confirmed. The independent-blogs category came back with nothing confirmable this week under these constraints and has been omitted rather than padded with unverified items.
+</footer>
+
+</div>
+</body>
+</html>

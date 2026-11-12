@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI &amp; Math Weekly Digest — Nov 5–12, 2026</title>
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --bg-card: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5a5a5a;
+    --accent: #7c3aed;
+    --accent-2: #0d9488;
+    --border: #e4e2dd;
+    --tag-ml-bg: #ede9fe;
+    --tag-ml-text: #5b21b6;
+    --tag-math-bg: #ccfbf1;
+    --tag-math-text: #0f766e;
+    --tag-lab-bg: #fef3c7;
+    --tag-lab-text: #92400e;
+    --tag-blog-bg: #fee2e2;
+    --tag-blog-text: #991b1b;
+    --link: #6d28d9;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121212;
+      --bg-card: #1c1c1e;
+      --text: #eceae6;
+      --text-muted: #a3a19c;
+      --accent: #a78bfa;
+      --accent-2: #5eead4;
+      --border: #2e2e30;
+      --tag-ml-bg: #2e1f5e;
+      --tag-ml-text: #d8c9ff;
+      --tag-math-bg: #0f3d38;
+      --tag-math-text: #99f6e4;
+      --tag-lab-bg: #46330a;
+      --tag-lab-text: #fde68a;
+      --tag-blog-bg: #4a1414;
+      --tag-blog-text: #fecaca;
+      --link: #c4b5fd;
+      --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #121212;
+    --bg-card: #1c1c1e;
+    --text: #eceae6;
+    --text-muted: #a3a19c;
+    --accent: #a78bfa;
+    --accent-2: #5eead4;
+    --border: #2e2e30;
+    --tag-ml-bg: #2e1f5e;
+    --tag-ml-text: #d8c9ff;
+    --tag-math-bg: #0f3d38;
+    --tag-math-text: #99f6e4;
+    --tag-lab-bg: #46330a;
+    --tag-lab-text: #fde68a;
+    --tag-blog-bg: #4a1414;
+    --tag-blog-text: #fecaca;
+    --link: #c4b5fd;
+    --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 32px 16px 64px;
+  }
+
+  header {
+    margin-bottom: 36px;
+  }
+
+  header h1 {
+    font-size: 1.7rem;
+    line-height: 1.25;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+
+  header .subtitle {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    max-width: 60ch;
+  }
+
+  header .daterange {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--tag-ml-bg);
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+
+  nav.toc {
+    margin: 24px 0 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  nav.toc a {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 5px 11px;
+    border-radius: 999px;
+  }
+
+  nav.toc a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  section.group {
+    margin-top: 44px;
+  }
+
+  section.group h2 {
+    font-size: 1.2rem;
+    margin: 0 0 4px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  section.group p.group-desc {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin: 10px 0 20px;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .card h3 {
+    font-size: 1.05rem;
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  .card h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .card h3 a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .tag {
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 3px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .tag.ml { background: var(--tag-ml-bg); color: var(--tag-ml-text); }
+  .tag.math { background: var(--tag-math-bg); color: var(--tag-math-text); }
+  .tag.lab { background: var(--tag-lab-bg); color: var(--tag-lab-text); }
+  .tag.blog { background: var(--tag-blog-bg); color: var(--tag-blog-text); }
+
+  .meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 6px 0 10px;
+  }
+
+  .summary {
+    font-size: 0.93rem;
+    color: var(--text);
+    margin: 0 0 10px;
+  }
+
+  .card a.readlink {
+    font-size: 0.85rem;
+    color: var(--link);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .card a.readlink:hover {
+    text-decoration: underline;
+  }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  footer a { color: var(--link); }
+
+  @media (max-width: 480px) {
+    header h1 { font-size: 1.4rem; }
+    .card { padding: 15px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>AI &amp; Math Weekly Digest</h1>
+  <div class="subtitle">New papers, research ideas, and technical writeups from the past week in machine learning, AI, and mathematics — curated for substance, not headlines.</div>
+  <span class="daterange">November 5 – 12, 2026</span>
+
+  <nav class="toc">
+    <a href="#ml-papers">ML/AI Papers</a>
+    <a href="#math-papers">Math Papers &amp; Ideas</a>
+    <a href="#lab-writeups">Research Lab Writeups</a>
+    <a href="#indie-blogs">Independent Blog Posts</a>
+  </nav>
+</header>
+
+<section class="group" id="ml-papers">
+  <h2>ML/AI Papers</h2>
+  <p class="group-desc">A reasoning-and-efficiency-heavy week: three papers dig into when and how to spend less compute on long chains of thought — targeted compression, causally testing what memory compaction actually does to an agent's behavior, and a sharper look at distillation versus RL — one probes a popular routing trick's fading returns now that base models already reason well on their own, and a sprawling multi-lab survey asks the uncomfortable question of whether mechanistic interpretability is actually making models safer or just satisfying curiosity.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.04814" target="_blank" rel="noopener">Think Less, Locally: Local Preference Learning for Reasoning Compression</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2611.04814 · Muyao Yuan et al. (Xi'an Jiaotong University, WeChat AI/Tencent) · submitted Nov 3, 2026</div>
+    <p class="summary">Most attempts to shorten a model's chain-of-thought compress the whole trace uniformly, which risks cutting corners the model actually needed. LoCo instead finds the specific point mid-reasoning where a model has effectively "done enough" thinking, freezes everything before that point, and regenerates a shorter, verified continuation from there — then trains on these paired long/short traces with direct preference optimization. The reported payoff is real: 42–45% shorter math traces and 23–36% shorter code traces with no drop in accuracy, and training only on math still transfers the compression skill to code, suggesting "knowing when you've reasoned enough" is a somewhat general skill rather than a token-counting trick tied to one domain.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.04814" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.03852" target="_blank" rel="noopener">Why Pay for Long Reasoning When Rewrite Do Trick? Causal Effects of Reasoning History Compaction on Future Generation and Agent Cost</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2611.03852 · Anton Hristov · submitted Nov 2, 2026</div>
+    <p class="summary">Instead of just benchmarking context compaction, this paper asks a causal question: if you rewrite an agent's past reasoning into a compact summary before it sees new tool results, does that actually change how the model reasons afterward, not just how much the call costs? The answer is yes — compaction reliably shortens future reasoning and can meaningfully cut real-dollar costs in software-agent pipelines — but the effect is inconsistent across models and compressors, and for some models it visibly hurts task quality. A useful corrective for anyone treating memory compaction as a free lunch in long-horizon agent loops.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.03852" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.08453" target="_blank" rel="noopener">Unpacking the Compute Efficiency of Strong-to-Weak On-Policy Distillation Against GRPO</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2611.08453 · Zeyu Leo Liu, Yang Li, Bo Pang, et al. (Salesforce AI Research) · submitted Nov 5, 2026</div>
+    <p class="summary">On-policy distillation has been pitched lately as a cheap substitute for reinforcement learning, but this paper complicates that story: distilling from an external, stronger teacher model turns out to be <em>less</em> compute-efficient per unit of accuracy than just running GRPO directly. The twist is that distilling a model's own GRPO checkpoint back into itself recovers the same accuracy for far less compute, and the real advantage shows up when merging several separately-trained domain specialists into one generalist via distillation — which beats training a single model jointly across all domains with GRPO from scratch. A good antidote to treating "RL vs. distillation" as a single universal tradeoff.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.08453" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.04098" target="_blank" rel="noopener">When Strong Reasoners Join the Pool: Small Union Premiums and Costly Runaway Generations in LLM Routing</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2611.04098 · Teng-Ruei Chen · submitted ~Nov 3, 2026</div>
+    <p class="summary">Ensemble routing — querying several LLMs and keeping whichever answer looks right — reportedly gave weaker models a solid ~3.5 percentage-point accuracy boost in earlier work. Tested here against today's strong reasoning models, that gain shrinks to under 0.6 points, and a good chunk of the wasted compute turns out to come from a small number of responses that hit the generation length cap and run away — one model in the pool was simply too slow to ever finish. A concrete, measured illustration that once each individual model is already a strong reasoner, routing between them pays off far less than the ensemble intuition suggests.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.04098" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.08438" target="_blank" rel="noopener">Understanding AI from the Inside: The State of Mechanistic Interpretability for AI Safety</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2611.08438 · Fazl Barez, Tung-Yu Wu, Hunar Batra, et al. — ~25 co-authors incl. Yoshua Bengio, Stella Biderman, Mor Geva · submitted ~Nov 5, 2026</div>
+    <p class="summary">A sprawling, multi-lab survey that asks the question a lot of interpretability work quietly sidesteps: does understanding what's happening inside a model's circuits actually make it safer, or is that connection just assumed? It proposes a framework for checking interpretability claims against real behavioral evals, and surveys where circuit-level understanding has (and hasn't) paid off for tasks like knowledge editing, steering, and monitoring. The author list — spanning most of the field's major interpretability labs and academic groups — makes this read like it's aiming to be the reference point for what mechanistic interpretability can and can't currently promise.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.08438" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+</section>
+
+<section class="group" id="math-papers">
+  <h2>Math Papers &amp; Ideas</h2>
+  <p class="group-desc">A lighter week for brand-new pure-math preprints, but a genuinely interesting meta-story: mathematicians are now racing each other to turn AI-found proofs into human-readable ones, following OpenAI's October dump of hundreds of claimed results. Alongside that, three technical papers tighten statistical theory in high dimensions and on curved spaces.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.quantamagazine.org/update/168664/" target="_blank" rel="noopener">Mathematicians Race to Simplify AI-Found Proofs</a></h3>
+      <span class="tag math">Math</span>
+    </div>
+    <div class="meta">Quanta Magazine, "Transformation" updates · Konstantin Kakaes · early Nov 2026 (exact date unconfirmed)</div>
+    <p class="summary">After OpenAI released some 377 claimed proofs on October 6 — including one addressing the long-studied question of whether "Landau–Siegel zeros" exist — mathematicians didn't just check the results, they started competing to rewrite them more simply. Bryce Kerr of UNSW Canberra is one of several who produced a cleaner, human-readable re-proof of the Siegel-zero result after the AI got there first, deliberately avoiding reading the AI's own version too closely before writing his own. It's a glimpse of a new division of labor taking shape: AI finds a correct proof fast, and mathematicians now race each other to "digest" it into something the field can actually understand and build on, rather than letting the literature fill up with correct-but-opaque results.</p>
+    <a class="readlink" href="https://www.quantamagazine.org/update/168664/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.08074" target="_blank" rel="noopener">Sharp Moderate Deviations and Uniform Berry–Esseen Bounds for Hotelling's T²-Statistic via Stein's Method</a></h3>
+      <span class="tag math">Math</span>
+    </div>
+    <div class="meta">arXiv:2611.08074 · Song-Hao Liu, Qi-Man Shao, Hao Shi, Jing-Yu Xu · submitted Nov 2026 (math.PR / math.ST)</div>
+    <p class="summary">Hotelling's T² statistic is the standard way to generalize a t-test to many dimensions at once, and this paper uses Stein's method — a classical technique for proving how fast a distribution converges to its Gaussian or chi-squared limit — to get sharp, uniform error bounds for it even in high dimensions. That matters well beyond the proof itself: tighter, more honest convergence bounds are exactly what make p-values and confidence regions trustworthy in the high-dimensional data analysis that's now routine in genomics, finance, and large-scale experimentation.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.08074" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.07567" target="_blank" rel="noopener">Sequential Certification of Partially Identified Product Targets: Information Limits and Adaptive Sampling</a></h3>
+      <span class="tag math">Math</span>
+    </div>
+    <div class="meta">arXiv:2611.07567 · Abdallah Skiredj et al. · submitted Nov 5, 2026 (math.ST)</div>
+    <p class="summary">Plenty of real decisions — clinical trials, A/B tests — have to be made before the data can fully pin down the answer, when the target quantity is only "partially identified" by what's observable. This paper works out the fundamental information-theoretic limits on how fast you can sequentially gather evidence and still certify a conclusion under that kind of built-in ambiguity, and proposes adaptive sampling schemes that approach those limits. Useful groundwork for anyone trying to speed up sequential testing without quietly overclaiming what the data actually supports.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.07567" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.07956" target="_blank" rel="noopener">A Note on the Cut-Locus-Corrected Fréchet Mean Central Limit Theorem</a></h3>
+      <span class="tag math">Math</span>
+    </div>
+    <div class="meta">arXiv:2611.07956 · Susovan Pal · submitted Nov 2026 (math.ST / math.PR)</div>
+    <p class="summary">A Fréchet mean extends the ordinary idea of an "average" to curved spaces — shape spaces, manifolds — where you can't just add points together. The usual central limit theorem for these means breaks down near a manifold's cut locus, the set of points where the shortest path between two points stops being unique, and this note works out the correction needed to make the statistics behave there. A small, technical fix, but exactly the kind of foundational patch that statistics on non-Euclidean data — directional data, shape analysis — depends on to stay rigorous.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.07956" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+</section>
+
+<section class="group" id="lab-writeups">
+  <h2>Research Lab Writeups</h2>
+  <p class="group-desc">Anthropic was again the only lab with clearly confirmable research output this week — OpenAI, DeepMind, Meta FAIR, and BAIR had nothing substantive we could verify against a primary source — but it ranged widely: a candid look at how real scientists currently (under-)use AI, a framework for not over-trusting a model's single "best guess" at a scientific model, a report on teaching agents to curate their own memory, and a hands-on test of Claude designing physical electronics end to end.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.anthropic.com/research/how-researchers-use-claude" target="_blank" rel="noopener">AI for Scientific Discovery: How Researchers Use Claude</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Anthropic, Economics · Nov 5, 2026</div>
+    <p class="summary">Anthropic combed through roughly 207,000 real Claude and Claude Code research sessions from August–September 2026 to see how scientists actually use AI day to day, rather than how they say they use it. Usage skews heavily toward computer science, math, and statistics — and within that, toward data analysis and writing up results — while idea generation and data collection, the two activities scientists themselves rate as most valuable, get comparatively little AI help. The report estimates current AI could roughly double output in some computational fields (with up to ~15x in a fully-automated hypothetical), versus a much more modest 3–4x ceiling in lab sciences that stay bottlenecked by physical experimentation.</p>
+    <a class="readlink" href="https://www.anthropic.com/research/how-researchers-use-claude" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.anthropic.com/research/teaching-ai-to-build-scientific-models" target="_blank" rel="noopener">Teaching AI to Build Scientific Models</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Anthropic, Science (guest post) · Nov 6, 2026</div>
+    <p class="summary">Argues AI's real opportunity in science isn't just fitting curves to data but helping build mechanistic models — of neurons, of whole brains — while flagging a real danger: a model that confidently returns one "best-fit" explanation can hide other equally valid ones. Its proposed fix is simulation-based inference: run a candidate model many times, train a neural network to invert simulated outputs back to plausible parameter ranges, and have the AI tool report a spread of plausible models plus which features the data can and can't actually constrain — instead of a single falsely-confident answer.</p>
+    <a class="readlink" href="https://www.anthropic.com/research/teaching-ai-to-build-scientific-models" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.anthropic.com/research/components-of-agent-memory" target="_blank" rel="noopener">The Components of Agent Memory</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Anthropic, Engineering · Nov 6, 2026</div>
+    <p class="summary">Draws an analogy between how human memory consolidates during sleep and how AI agents might organize their own memory, introducing "dreaming" — an offline process where Claude reviews its own past session logs, corrects mistaken notes, and builds structured wikis rather than hoarding raw transcripts. The headline result: letting Claude decide for itself what's worth remembering beat fixed rules like "only log failures," and on a long document-QA task, adding a dreamed wiki pushed accuracy from 13% to 48%, with wiki-plus-search reaching 61%. A concrete, measured case for curated memory over simply remembering everything.</p>
+    <a class="readlink" href="https://www.anthropic.com/research/components-of-agent-memory" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.anthropic.com/research/claude-electronics-design" target="_blank" rel="noopener">Testing Claude on Real-World Electronics Design</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Anthropic, Science · Nov 9, 2026</div>
+    <p class="summary">Working with circuit-board maker Diode Computers, Anthropic tested whether Claude could carry electronics design end to end — circuit layout, enclosure, firmware, parts list — and came away with three working prototypes (a speakerphone, a voice-assistant hub, a handheld virtual pet) that human engineers built without needing to change the circuits. The newest model showed a clear jump over earlier ones at component placement and routing, and often caught and fixed its own failing designs mid-process — though these remain early prototypes, untested for certification or long-term reliability.</p>
+    <a class="readlink" href="https://www.anthropic.com/research/claude-electronics-design" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+</section>
+
+<section class="group" id="indie-blogs">
+  <h2>Independent Blog Posts</h2>
+  <p class="group-desc">A smaller haul this week, dominated by two regulars: Sebastian Raschka's running account of how LLM attention architecture is quietly becoming hybrid by default, and Simon Willison's usual mix of changelog-as-case-study posts, this time surfacing a concrete lesson about how silently a thinking budget can disappear and a cross-vendor convergence in "LLM-as-judge" API design.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://sebastianraschka.com/blog/2026/full-to-hybrid-attention.html" target="_blank" rel="noopener">From Full to Hybrid Attention in LLMs</a></h3>
+      <span class="tag blog">Blog</span>
+    </div>
+    <div class="meta">Sebastian Raschka · Nov 10, 2026</div>
+    <p class="summary">Raschka argues the field has quietly but decisively moved from full quadratic self-attention toward hybrid designs that mix in a few full or gated-attention layers among many cheap linear-attention or state-space layers — pointing to Qwen3-Next's repeating pattern of three Gated DeltaNet blocks followed by one Gated Attention block, now carried forward into Qwen3.5. He's careful to note the KV-cache savings from this are partial, not total, since the remaining attention layers still need to cache past tokens. A clear, numbers-grounded snapshot of where production attention architecture actually stands heading into 2027, rather than where the papers say it's headed.</p>
+    <a class="readlink" href="https://sebastianraschka.com/blog/2026/full-to-hybrid-attention.html" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://simonwillison.net/2026/Nov/11/gemini-decisions-api/" target="_blank" rel="noopener">Gemini Decisions API</a></h3>
+      <span class="tag blog">Blog</span>
+    </div>
+    <div class="meta">Simon Willison · Nov 11, 2026</div>
+    <p class="summary">Willison walks through Google's new structured-judgment API for Gemini and notices it's nearly identical in shape to his own "Jev" project and to OpenAI's earlier Decisions API: all three settled independently on the same three primitives — yes/no, multiple-choice, and rubric/score-based judgments — for LLM-as-judge-style evaluation. A small but telling sign that the "ask a model to judge, in a structured way" design space has converged across vendors rather than staying a product differentiator.</p>
+    <a class="readlink" href="https://simonwillison.net/2026/Nov/11/gemini-decisions-api/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://simonwillison.net/2026/Nov/9/llm-anthropic/" target="_blank" rel="noopener">Release: llm-anthropic 0.31</a></h3>
+      <span class="tag blog">Blog</span>
+    </div>
+    <div class="meta">Simon Willison · Nov 9, 2026</div>
+    <p class="summary">A changelog post for Willison's <code>llm</code> CLI plugin, updated to support Claude Fable 5.2 and Mythos 5.2 — but the detail worth noting is a failure mode he hit along the way: at "max" thinking effort, the model failed to return an image at all, burning through its entire 128,000-token thinking budget before running out. A small, concrete, reproducible example of how an extended-thinking budget can silently consume a whole request without ever reaching the actual task.</p>
+    <a class="readlink" href="https://simonwillison.net/2026/Nov/9/llm-anthropic/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+</section>
+
+<footer>
+  Curated automatically from arXiv, research lab blogs, and independent ML/math writers. Compiled Nov 12, 2026. This environment's network policy blocked direct access to arxiv.org, deepmind.google, openai.com, ai.meta.com, bair.berkeley.edu, research.google, quantamagazine.org, terrytao.wordpress.com, sebastianraschka.com, simonwillison.net, lilianweng.github.io, gwern.net, and transformer-circuits.pub this edition (only anthropic.com and github.com resolved directly), so every item above except the four Anthropic posts was assembled via web-search cross-referencing rather than a direct fetch of the primary source; paper titles, authors, dates, and figures are reported as found in search snippets and may be approximate where a direct abstract or post could not be confirmed. One claimed item — a reported DeepMind/Gemini formal verification of the Signal messaging protocol — could not be corroborated by any independent source on fact-check and was dropped rather than included unverified; the real Lean-based "Signal Shot" verification effort involves Signal, the Beneficial AI Foundation, and the Lean FRO, with no DeepMind involvement found. A claim that Anthropic sped up its Fermat's Last Theorem formalization pipeline to ~30 hours this week also could not be confirmed — that formalization was announced September 4, 2026, not this week — and was omitted.
+</footer>
+
+</div>
+</body>
+</html>

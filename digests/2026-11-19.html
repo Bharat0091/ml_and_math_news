@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI &amp; Math Weekly Digest — Nov 12–19, 2026</title>
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --bg-card: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5a5a5a;
+    --accent: #7c3aed;
+    --accent-2: #0d9488;
+    --border: #e4e2dd;
+    --tag-ml-bg: #ede9fe;
+    --tag-ml-text: #5b21b6;
+    --tag-math-bg: #ccfbf1;
+    --tag-math-text: #0f766e;
+    --tag-lab-bg: #fef3c7;
+    --tag-lab-text: #92400e;
+    --tag-blog-bg: #fee2e2;
+    --tag-blog-text: #991b1b;
+    --link: #6d28d9;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121212;
+      --bg-card: #1c1c1e;
+      --text: #eceae6;
+      --text-muted: #a3a19c;
+      --accent: #a78bfa;
+      --accent-2: #5eead4;
+      --border: #2e2e30;
+      --tag-ml-bg: #2e1f5e;
+      --tag-ml-text: #d8c9ff;
+      --tag-math-bg: #0f3d38;
+      --tag-math-text: #99f6e4;
+      --tag-lab-bg: #46330a;
+      --tag-lab-text: #fde68a;
+      --tag-blog-bg: #4a1414;
+      --tag-blog-text: #fecaca;
+      --link: #c4b5fd;
+      --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #121212;
+    --bg-card: #1c1c1e;
+    --text: #eceae6;
+    --text-muted: #a3a19c;
+    --accent: #a78bfa;
+    --accent-2: #5eead4;
+    --border: #2e2e30;
+    --tag-ml-bg: #2e1f5e;
+    --tag-ml-text: #d8c9ff;
+    --tag-math-bg: #0f3d38;
+    --tag-math-text: #99f6e4;
+    --tag-lab-bg: #46330a;
+    --tag-lab-text: #fde68a;
+    --tag-blog-bg: #4a1414;
+    --tag-blog-text: #fecaca;
+    --link: #c4b5fd;
+    --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 32px 16px 64px;
+  }
+
+  header {
+    margin-bottom: 36px;
+  }
+
+  header h1 {
+    font-size: 1.7rem;
+    line-height: 1.25;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+
+  header .subtitle {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    max-width: 60ch;
+  }
+
+  header .daterange {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--tag-ml-bg);
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+
+  nav.toc {
+    margin: 24px 0 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  nav.toc a {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 5px 11px;
+    border-radius: 999px;
+  }
+
+  nav.toc a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  section.group {
+    margin-top: 44px;
+  }
+
+  section.group h2 {
+    font-size: 1.2rem;
+    margin: 0 0 4px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  section.group p.group-desc {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin: 10px 0 20px;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .card h3 {
+    font-size: 1.05rem;
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  .card h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .card h3 a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .tag {
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 3px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .tag.ml { background: var(--tag-ml-bg); color: var(--tag-ml-text); }
+  .tag.math { background: var(--tag-math-bg); color: var(--tag-math-text); }
+  .tag.lab { background: var(--tag-lab-bg); color: var(--tag-lab-text); }
+  .tag.blog { background: var(--tag-blog-bg); color: var(--tag-blog-text); }
+
+  .meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 6px 0 10px;
+  }
+
+  .summary {
+    font-size: 0.93rem;
+    color: var(--text);
+    margin: 0 0 10px;
+  }
+
+  .card a.readlink {
+    font-size: 0.85rem;
+    color: var(--link);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .card a.readlink:hover {
+    text-decoration: underline;
+  }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  footer a { color: var(--link); }
+
+  @media (max-width: 480px) {
+    header h1 { font-size: 1.4rem; }
+    .card { padding: 15px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>AI &amp; Math Weekly Digest</h1>
+  <div class="subtitle">New papers, research ideas, and technical writeups from the past week in machine learning, AI, and mathematics — curated for substance, not headlines.</div>
+  <span class="daterange">November 12 – 19, 2026</span>
+
+  <nav class="toc">
+    <a href="#ml-papers">ML/AI Papers</a>
+    <a href="#math-papers">Math Papers &amp; Ideas</a>
+    <a href="#lab-writeups">Research Lab Writeups</a>
+  </nav>
+</header>
+
+<section class="group" id="ml-papers">
+  <h2>ML/AI Papers</h2>
+  <p class="group-desc">Two threads stand out: energy-based formulations of recurrent reasoning squeezing out large inference-compute savings, and a noticeably dense cluster of papers all probing the same question about agent self-improvement within a single week. Rounding things out, two new benchmarks ask whether world and video models actually understand the physics they're shown, and whether AI forecasters can be graded without the risk of having memorized the answer.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.08977" target="_blank" rel="noopener">Energy-Based Reasoners: Your Recurrent Reasoner Should Be an Energy-Based Model</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2611.08977 · William Xingxu Chen, Alexi Gladstone, Zeyu Michael Li, Heng Ji, Yilun Du · submitted Nov 6, 2026; widely discussed on Hacker News this week</div>
+    <p class="summary">Rather than just stacking more recurrent layers for "thinking," this paper has a reasoning model learn an energy function over its own latent reasoning states and treats each update as a step of gradient descent on that energy — plus an exploration phase during training meant to find multiple good reasoning paths instead of collapsing onto the first one found. The payoff is compute efficiency rather than a raw accuracy jump: the authors report matching or beating prior recurrent reasoners while using roughly 345x less inference compute, reaching 99.9% accuracy on Sudoku-Extreme. It resurfaced in community discussion this week as one of the more concrete "cheap System-2 reasoning" results going around, which is why it's included here a few days outside its original post date.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.08977" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.20899" target="_blank" rel="noopener">SciWorldBench: Do Video World Models Really Understand Scientific Experiments?</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2611.20899 · submitted ~Nov 17, 2026</div>
+    <p class="summary">Joins a small but growing family of benchmarks (SciVideoBench, VideoScience-Bench, ExpVid) built around one pointed question: when a video or world model watches a scientific experiment, is it tracking the actual physics, or just reproducing the visual style of similar-looking footage? Earlier entries in this family have consistently found that even strong video generators get the look of an experiment right while getting its real-world outcome wrong, and SciWorldBench pushes that same scrutiny onto world models being used for planning and prediction, not just video generation. We weren't able to confirm the paper's specific reported numbers independently this week — worth checking the abstract directly before citing figures.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.20899" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3>A cluster of papers asking what actually makes agent self-improvement work</h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2611.23219, 2611.23068, 2611.23067, 2611.23138 · all submitted Nov 18–19, 2026</div>
+    <p class="summary">Within about a day of each other, four separate papers landed on arXiv all circling the same open question from different angles. <em>"Do LLM Agents Still Need to Be Told How to Self-Improve?"</em> asks whether explicit self-improvement instructions are still necessary now that models are better at it by default. <em>"The Resolution Hypothesis"</em> argues the real bottleneck in agent evolution isn't generating candidate changes but correctly telling which ones are genuine improvements. A third paper looks at how an agent's instilled "values" shape what it chooses to build when left to iterate on itself, and a fourth ("RSI-Prime") frames the whole problem as training models whose job is to train other models. None of these settle the question on its own, but the sheer concentration of submissions on it in a single week is itself a signal of where a meaningful slice of the field's attention currently sits. Full abstracts for these were not yet indexed by search tools at the time of writing, so descriptions above are based on titles and category context — read the papers directly for specifics.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.23219" target="_blank" rel="noopener">Read papers →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.23045" target="_blank" rel="noopener">ForecastGym: A Live, Controlled, and Replayable Benchmark for Forecasting Agents</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2611.23045 · submitted ~Nov 19, 2026</div>
+    <p class="summary">As LLM-based forecasting tools get pitched as alternatives to prediction markets and expert panels, this benchmark targets a basic infrastructure gap: grading forecasters against live, future events that actually resolve, replayed under controlled conditions, rather than static historical questions a model could simply have memorized during pretraining. That data-leakage problem has quietly undermined a lot of "AI predicts the future" claims, and a reusable, replayable harness for it is overdue.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.23045" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+</section>
+
+<section class="group" id="math-papers">
+  <h2>Math Papers &amp; Ideas</h2>
+  <p class="group-desc">The bigger math story this week is infrastructure, not a new theorem: Terence Tao is opening a dedicated forum for the community to collectively digest the flood of AI-generated proofs, rather than leaving each mathematician to re-derive or ignore them alone. Alongside that, two incremental-but-concrete results chip away at century-old problems tied to Erdős.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://terrytao.wordpress.com/2026/11/13/introducing-mathhelm-a-place-to-discuss-ai-generated-papers/" target="_blank" rel="noopener">Introducing MathHelm: A Place to Discuss AI-Generated Papers</a></h3>
+      <span class="tag math">Math</span>
+    </div>
+    <div class="meta">Terence Tao, "What's new" · Nov 13, 2026</div>
+    <p class="summary">In the wake of OpenAI's October release of hundreds of AI-generated manuscripts — and now its new science blog's own math and physics claims — Tao is launching MathHelm, a dedicated venue for mathematicians to jointly question, verify, and work through AI-generated papers at scale, rather than each person independently deciding whether to trust or ignore them. It's a structural response to a problem several of Tao's own recent guest posts have been circling: the field doesn't yet have a venue built for digesting proof output at this volume, and ad hoc blog comments and private skepticism don't scale.</p>
+    <a class="readlink" href="https://terrytao.wordpress.com/2026/11/13/introducing-mathhelm-a-place-to-discuss-ai-generated-papers/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.20783" target="_blank" rel="noopener">On Erdős' Last Equation</a></h3>
+      <span class="tag math">Math</span>
+    </div>
+    <div class="meta">arXiv:2611.20783 (companion note: arXiv:2611.20799) · Florian Luca, István Pink, Csaba Sándor · submitted Nov 16, 2026 (math.NT)</div>
+    <p class="summary">"Erdős's last equation" asks about increasing integer tuples (x₁ ≤ ... ≤ xₙ) satisfying n(x₁+...+xₙ) = x₁x₂...xₙ; earlier work by two of these same authors showed the largest term xₙ must grow without bound as n increases. This pair of companion papers pins down more precisely how slowly xₙ is allowed to grow and tightens the bounds on the full solution set — a modest but concrete narrowing of a problem whose roots trace back to Erdős's own notebooks and a 2019 American Mathematical Monthly article revisiting it.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.20783" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.17378" target="_blank" rel="noopener">A New Lower Bound for the Erdős Box Problem</a></h3>
+      <span class="tag math">Math</span>
+    </div>
+    <div class="meta">arXiv:2611.17378 · Dean Matthew Menezes · submitted ~Nov 2026 (math.CO)</div>
+    <p class="summary">The Erdős box problem asks how large a "box-free" set of integer points in a high-dimensional grid can be — a combinatorics question that's seen steady incremental progress via random and algebraic constructions over the past few years (notably a 2020 improvement using random multilinear maps). This paper reportedly pushes the known lower-bound exponent for the four-dimensional case from 15/4 up to 19/5 via explicit constructions of box-free subsets. We flag this one with slightly less confidence than the rest of this digest, since we couldn't independently cross-check the exact bound against a second source this week — worth a quick abstract check before citing the number.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.17378" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+</section>
+
+<section class="group" id="lab-writeups">
+  <h2>Research Lab Writeups</h2>
+  <p class="group-desc">A genuinely active week across labs: Anthropic claims two unreviewed black-hole-physics results and publishes a methodology piece on building evals that actually mean something, OpenAI opens a dedicated venue for AI-assisted scientific research, and DeepMind pushes its genomics model to cell-type-specific resolution.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.anthropic.com/research/claude-black-hole-physics" target="_blank" rel="noopener">Claude Solves Two Open Problems in the Physics of Black Holes</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Anthropic, Science · Nov 17, 2026</div>
+    <p class="summary">Anthropic says a Claude model completed two previously-stuck black-hole physics problems: finishing a calculation first attempted in 2003 on whether black-hole formation in small "toy universe" models proceeds through a first-order phase transition, and sharpening a modular-bootstrap bound — used to rule out candidate quantum gravity theories in simplified settings — down to a precise value near 9.1266, where only a rough range (roughly 8.5 to 12.3) was previously known. Two unreviewed preprints posted Nov 7 back the claims, and Anthropic says one result was independently reproduced using the separate, publicly available Claude Opus 5.5. Neither has been peer-reviewed, so treat this as a notable but unverified claim rather than a settled result — the pattern of labs publishing AI-assisted "results" ahead of independent review is becoming its own small trend worth watching critically.</p>
+    <a class="readlink" href="https://www.anthropic.com/research/claude-black-hole-physics" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.anthropic.com/research/building-strong-safety-evaluations" target="_blank" rel="noopener">Building Strong Safety Evaluations</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Anthropic, Engineering &amp; Policy · Nov 13, 2026</div>
+    <p class="summary">A methodology-focused write-up on what actually makes a model safety eval trustworthy rather than a box-ticking exercise: ground test cases in real observed behavior, red-team transcripts and incident reports rather than invented scenarios, involve subject-matter experts alongside ML engineers, and treat any single headline "safety score" with real suspicion, since it depends heavily on exactly how the eval happened to be set up. It's a useful reference for anyone building their own model evaluations, independent of Anthropic's specific results.</p>
+    <a class="readlink" href="https://www.anthropic.com/research/building-strong-safety-evaluations" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://openai.com/index/our-new-blog-for-science/" target="_blank" rel="noopener">Our New Blog for Science</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">OpenAI · Nov 15, 2026</div>
+    <p class="summary">OpenAI launched a dedicated science blog meant to give its own researchers and outside academic collaborators a venue to describe actual methods and findings — including where a method falls short — rather than product announcements. Its inaugural guest post comes from UC Santa Barbara particle theorist (and OpenAI visiting researcher) Nathaniel Craig, describing work with an internal model toward a candidate nonperturbative lattice definition of the Standard Model. Craig himself is careful to frame the result as "far more an answer in principle than an answer in practice," with several key pieces of the construction still unresolved — a notably more measured framing than most AI-for-science announcements this year.</p>
+    <a class="readlink" href="https://openai.com/index/our-new-blog-for-science/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/" target="_blank" rel="noopener">AlphaGenome 2: Deciphering How Cells Read DNA to Better Understand Disease</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Google DeepMind, Science · Nov 11, 2026</div>
+    <p class="summary">The successor to AlphaGenome predicts how a given DNA variant affects gene activity in specific cell types and states, rather than averaging across a whole tissue sample — trained on more than 107 million individual-cell profiles across 68 tissues. On the TenK10K immune-cell benchmark it reportedly recovers 30% of likely-causal variants at 90% precision, roughly double the 16% managed by the original AlphaGenome fine-tuned for single-cell data, and in a retrospective inflammatory-bowel-disease case it computationally reproduced a known regulatory variant's effect on a gut-macrophage gene. It's freely available for non-commercial research via API, though DeepMind is explicit it hasn't been validated for clinical or diagnostic use. (Published Nov 11, just ahead of this digest's usual window, but not covered last week — included here as still-fresh and substantive.)</p>
+    <a class="readlink" href="https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+</section>
+
+<footer>
+  Curated automatically from arXiv, research lab blogs, and independent ML/math writers. Compiled Nov 19, 2026. As with recent editions, this environment's network policy blocked direct fetches to arxiv.org, deepmind.google, openai.com, quantamagazine.org, terrytao.wordpress.com, sebastianraschka.com, simonwillison.net, bair.berkeley.edu, ai.meta.com, gwern.net, and lilianweng.github.io this run (only anthropic.com and github.com resolved directly), so most items were assembled via web-search cross-referencing and a GitHub-hosted daily-arXiv mirror rather than a direct read of the primary source. We did not find any substantive, independently-confirmable posts this week from Meta FAIR, BAIR, Sebastian Raschka, Simon Willison, Lil'Log, or Gwern, so the "Independent Blog Posts" section is omitted rather than filled with unverified material. A claimed arXiv proof of the 90-year-old Reinhardt conjecture (smoothed-octagon packing) surfaced in search results this week but could not be corroborated — no independent source, commentary, or author background could be found for it — so it was dropped rather than reported as a real result; if a genuine proof of Reinhardt exists, it would be a major story and is worth watching for independent confirmation. The SciWorldBench and Erdős-box-problem entries above are flagged in-line where we could not independently verify specific reported numbers.
+</footer>
+
+</div>
+</body>
+</html>

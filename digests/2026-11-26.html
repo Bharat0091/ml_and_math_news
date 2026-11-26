@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI &amp; Math Weekly Digest — Nov 19–26, 2026</title>
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --bg-card: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5a5a5a;
+    --accent: #7c3aed;
+    --accent-2: #0d9488;
+    --border: #e4e2dd;
+    --tag-ml-bg: #ede9fe;
+    --tag-ml-text: #5b21b6;
+    --tag-math-bg: #ccfbf1;
+    --tag-math-text: #0f766e;
+    --tag-lab-bg: #fef3c7;
+    --tag-lab-text: #92400e;
+    --tag-blog-bg: #fee2e2;
+    --tag-blog-text: #991b1b;
+    --link: #6d28d9;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121212;
+      --bg-card: #1c1c1e;
+      --text: #eceae6;
+      --text-muted: #a3a19c;
+      --accent: #a78bfa;
+      --accent-2: #5eead4;
+      --border: #2e2e30;
+      --tag-ml-bg: #2e1f5e;
+      --tag-ml-text: #d8c9ff;
+      --tag-math-bg: #0f3d38;
+      --tag-math-text: #99f6e4;
+      --tag-lab-bg: #46330a;
+      --tag-lab-text: #fde68a;
+      --tag-blog-bg: #4a1414;
+      --tag-blog-text: #fecaca;
+      --link: #c4b5fd;
+      --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #121212;
+    --bg-card: #1c1c1e;
+    --text: #eceae6;
+    --text-muted: #a3a19c;
+    --accent: #a78bfa;
+    --accent-2: #5eead4;
+    --border: #2e2e30;
+    --tag-ml-bg: #2e1f5e;
+    --tag-ml-text: #d8c9ff;
+    --tag-math-bg: #0f3d38;
+    --tag-math-text: #99f6e4;
+    --tag-lab-bg: #46330a;
+    --tag-lab-text: #fde68a;
+    --tag-blog-bg: #4a1414;
+    --tag-blog-text: #fecaca;
+    --link: #c4b5fd;
+    --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 32px 16px 64px;
+  }
+
+  header {
+    margin-bottom: 36px;
+  }
+
+  header h1 {
+    font-size: 1.7rem;
+    line-height: 1.25;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+
+  header .subtitle {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    max-width: 60ch;
+  }
+
+  header .daterange {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--tag-ml-bg);
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+
+  nav.toc {
+    margin: 24px 0 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  nav.toc a {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 5px 11px;
+    border-radius: 999px;
+  }
+
+  nav.toc a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  section.group {
+    margin-top: 44px;
+  }
+
+  section.group h2 {
+    font-size: 1.2rem;
+    margin: 0 0 4px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  section.group p.group-desc {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin: 10px 0 20px;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .card h3 {
+    font-size: 1.05rem;
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  .card h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .card h3 a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .tag {
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 3px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .tag.ml { background: var(--tag-ml-bg); color: var(--tag-ml-text); }
+  .tag.math { background: var(--tag-math-bg); color: var(--tag-math-text); }
+  .tag.lab { background: var(--tag-lab-bg); color: var(--tag-lab-text); }
+  .tag.blog { background: var(--tag-blog-bg); color: var(--tag-blog-text); }
+
+  .meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 6px 0 10px;
+  }
+
+  .summary {
+    font-size: 0.93rem;
+    color: var(--text);
+    margin: 0 0 10px;
+  }
+
+  .card a.readlink {
+    font-size: 0.85rem;
+    color: var(--link);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .card a.readlink:hover {
+    text-decoration: underline;
+  }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  footer a { color: var(--link); }
+
+  @media (max-width: 480px) {
+    header h1 { font-size: 1.4rem; }
+    .card { padding: 15px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>AI &amp; Math Weekly Digest</h1>
+  <div class="subtitle">New papers, research ideas, and technical writeups from the past week in machine learning, AI, and mathematics — curated for substance, not headlines.</div>
+  <span class="daterange">November 19 – 26, 2026</span>
+
+  <nav class="toc">
+    <a href="#ml-papers">ML/AI Papers</a>
+    <a href="#math-papers">Math Papers &amp; Ideas</a>
+    <a href="#lab-writeups">Research Lab Writeups</a>
+    <a href="#blog-posts">Independent Blog Posts</a>
+  </nav>
+</header>
+
+<section class="group" id="ml-papers">
+  <h2>ML/AI Papers</h2>
+  <p class="group-desc">Last week we flagged a dense cluster of papers all probing "recursive self-improvement" (agents that edit their own prompts, harnesses, or tools) within a single week. That wave hasn't slowed down — if anything it's gotten more specific, with this week's entries focused less on whether self-improvement works and more on how to stop a self-editing agent from quietly making itself worse.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.23476" target="_blank" rel="noopener">GUARD: Stabilizing Recursive Self-Improvement with Regret Guidance</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2611.23476 · submitted ~Nov 19-20, 2026</div>
+    <p class="summary">When an agent edits its own harness, prompts, or tools to improve itself, a net benchmark-score gain can hide the fact that it just broke something that used to work. GUARD's fix is to track "regret" — regressions on previously-solved tasks — as a signal kept separate from the raw count of newly-solved tasks, and to gate which self-generated edits actually get accepted based on that split view. It's a small methodological change, but it targets exactly the kind of silently-accumulating technical debt that aggregate scores in this line of work tend to paper over.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.23476" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.23651" target="_blank" rel="noopener">Safe Personal RSI: Evaluating and Repairing Personal Agent Updates</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2611.23651 · submitted ~Nov 20-21, 2026</div>
+    <p class="summary">Applies the same self-editing caution to a more personal setting: an assistant (the paper's running example is a personal health assistant) that wants to update its own instructions based on how interactions go. Proposed changes are checked against a bank of safety test cases before being accepted, and if nothing passes, the update is simply rejected and the assistant keeps running on its current, already-vetted instructions rather than drifting. Reject-by-default instead of accept-by-default is a conservative design choice, but it's one that's been missing from a lot of flashier self-improvement work.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.23651" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://arxiv.org/abs/2611.23388" target="_blank" rel="noopener">QDA: Closed-Loop LLM Quantization Design with Agents</a></h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2611.23388 · submitted ~Nov 20-21, 2026</div>
+    <p class="summary">Instead of hand-tuning one quantization recipe and applying it everywhere, QDA has an agent search over per-model quantization configurations, scoring each candidate by how far its reasoning traces diverge from the full-precision model on held-out prompts it never sees during the search. Treating quantization-recipe design as a closed loop an agent can run — rather than a one-off manual tuning pass done by a human once per model family — points toward quantization becoming another thing that gets automated per-model rather than applied generically.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.23388" target="_blank" rel="noopener">Read paper →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3>The self-improving-agent wave: five more entries from earlier in the week</h3>
+      <span class="tag ml">ML/AI</span>
+    </div>
+    <div class="meta">arXiv:2611.19230, 2611.18114, 2611.17790, 2611.18856, 2611.19823 · submitted Nov 15-18, 2026</div>
+    <p class="summary">Rounding out the picture, a batch of related papers landed in the few days just before this week's window and hadn't been covered yet: <em>CompoundingKernel</em> uses a self-improving agent loop to search for GPU kernels, starting from zero and ranking first on several public SOL-ExecBench leaderboards. <em>Interpretable Weight-Space Programming</em> has an LLM agent write model weights and features directly as code, skipping gradient training entirely, to produce transformers that are transparent by construction. <em>AutoRL</em> is a multi-agent system that watches a live reinforcement-learning run, diagnoses what's going wrong, and applies fixes mid-training. <em>Self-Improvement Memory</em> stores the rationale and observed outcomes of past harness edits so future optimization runs don't have to rediscover them, and <em>EfficientSkill</em> learns agent skills for accuracy first, then prunes them down for length, cutting token usage without giving back the accuracy gains. Together with the three papers above, that's eight self-improvement-flavored papers in about ten days — a strong signal of where a meaningful slice of the field's attention currently sits, even if no single one of them settles the underlying question.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.19230" target="_blank" rel="noopener">Read papers →</a>
+  </div>
+
+</section>
+
+<section class="group" id="math-papers">
+  <h2>Math Papers &amp; Ideas</h2>
+  <p class="group-desc">A thinner week for pure math than usual, and one where this environment's network restrictions bit harder than normal (see footer) — we could confirm titles and categories for several new submissions but not their full claims. Flagging that openly rather than guessing at results we haven't actually read.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3>A batch of pure-math preprints from Tuesday's listings</h3>
+      <span class="tag math">Math</span>
+    </div>
+    <div class="meta">arXiv:2611.28178, 2611.28257, 2611.28064 · math.NT / math.CO · submitted Nov 24, 2026</div>
+    <p class="summary">Among roughly 750 new math submissions posted Nov 24, three stood out by subject even though we couldn't retrieve full abstracts this week: a number-theory preprint on the Tate conjecture in positive characteristic (arXiv:2611.28178) — the Tate conjecture links algebraic cycles to Galois-fixed classes in étale cohomology and remains open in most settings — a paper on recurrence formulas for Taylor expansions of modular forms at CM points on Shimura curves (arXiv:2611.28257), and a combinatorics paper studying combinatorial zeta functions for type Ã₂ complexes (arXiv:2611.28064). We're flagging this one with real uncertainty: title and category are confirmed from arXiv's own listing pages, but the specific claims inside each paper are not — treat these as pointers worth chasing down rather than confirmed results.</p>
+    <a class="readlink" href="https://arxiv.org/abs/2611.28178" target="_blank" rel="noopener">Read papers →</a>
+  </div>
+
+</section>
+
+<section class="group" id="lab-writeups">
+  <h2>Research Lab Writeups</h2>
+  <p class="group-desc">A quiet week for the big labs on the research-blog front — our footer explains why some usual sources were unreachable — but Anthropic published two substantial, methodologically-detailed pieces: a systems-engineering writeup on rewriting a live, high-traffic API in Rust, and an economics study of how companies are actually reorganizing work around AI.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.anthropic.com/research/migrating-api-to-rust" target="_blank" rel="noopener">Migrating our Messages API to Rust</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Anthropic, Engineering · Nov 25, 2026</div>
+    <p class="summary">A detailed account of rewriting the Messages API (whose traffic grew roughly 1,800x between early 2024 and this fall) from Python to Rust for lower CPU use, without downtime or a feature freeze — and without a test suite complete enough to prove correctness on its own. Their fix was to treat the live production system itself as the oracle: shadow real traffic against both implementations, replay a captured model output rather than re-running it (since Claude's outputs are nondeterministic), and diff privacy-preserving "fingerprints" of each pipeline step instead of logging actual request text. The result was a roughly 70% cut in CPU per request and over 80% less memory, with input-match rate against shadowed production traffic rising from about 24% to 99.6% as the approach matured. The more interesting part is where human effort ended up: not writing the Rust code, but designing a verification signal precise enough for agents to act on, and reviewing fixes at the boundary between an inner sandbox-testing loop and an outer production-shadowing loop.</p>
+    <a class="readlink" href="https://www.anthropic.com/research/migrating-api-to-rust" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://www.anthropic.com/research/working-with-ai" target="_blank" rel="noopener">Working with AI</a></h3>
+      <span class="tag lab">Lab</span>
+    </div>
+    <div class="meta">Anthropic, Economics · Nov 23, 2026</div>
+    <p class="summary">Based on 66 interviews across 58 companies (all Anthropic customers, so take the sampling with appropriate salt), this report on enterprise AI adoption finds that the value companies report is mostly about doing more — accelerating existing work or enabling new products — rather than cutting costs, and that few report AI-driven layoffs even as many report hiring less and cutting offshore contractors. Its more interesting finding is structural: top-down, centrally-mandated automation tends to be brittle and provoke resistance, while purely bottom-up power-user experimentation stays siloed and adds maintenance burden; the approaches that actually capture value tend to broaden roles and redeploy staff toward judgment and interpersonal work AI can't yet do, backed by shared data infrastructure non-technical staff can use. The findings are explicitly framed as qualitative and exploratory rather than causal.</p>
+    <a class="readlink" href="https://www.anthropic.com/research/working-with-ai" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+</section>
+
+<section class="group" id="blog-posts">
+  <h2>Independent Blog Posts</h2>
+  <p class="group-desc">Only one independent post cleared our bar for substance this week, from a few days before our usual window and not covered previously — included because it's a genuinely useful practitioner reference.</p>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><a href="https://sebastianraschka.com/blog/2026/pretraining-lr-decay.html" target="_blank" rel="noopener">Pre-Training Without Learning Rate Decay</a></h3>
+      <span class="tag blog">Blog</span>
+    </div>
+    <div class="meta">Sebastian Raschka · Nov 17, 2026</div>
+    <p class="summary">A short, workmanlike comparison of three LLM pretraining learning-rate schedules — cosine decay, warmup-stable-decay (WSD), and a constant learning rate combined with checkpoint averaging — looking at which actually yields a better final model for a given compute budget. It's the kind of practical, no-hype question a lot of teams quietly wonder about but rarely write up carefully, which is Raschka's usual niche. Published just outside our strict 7-day window but not covered in last week's digest, so included here as still-fresh.</p>
+    <a class="readlink" href="https://sebastianraschka.com/blog/2026/pretraining-lr-decay.html" target="_blank" rel="noopener">Read post →</a>
+  </div>
+
+</section>
+
+<footer>
+  Curated automatically from arXiv, research lab blogs, and independent ML/math writers. Compiled Nov 26, 2026. As in recent weeks, this environment's network policy blocked direct fetches to arxiv.org, deepmind.google, terrytao.wordpress.com, quantamagazine.org, simonwillison.net, sebastianraschka.com, bair.berkeley.edu, ai.meta.com, gwern.net, lilianweng.github.io, and academy.dair.ai this run (only anthropic.com, github.com, and raw.githubusercontent.com resolved directly), so items were assembled via web-search cross-referencing rather than a direct read of most primary sources. This made the pure-math side of this week's search noticeably harder than usual: several leads (an Erdős-problem GitHub-wiki scan, an Ulam-sequence growth-rate claim, a specific Erdős–Ginzburg–Ziv arXiv ID) could not be corroborated well enough to report confidently and were dropped rather than guessed at. We also did not find substantive, independently-confirmable new posts this week from OpenAI, Google DeepMind, Meta FAIR, BAIR, Lil'Log, Gwern, or Terence Tao's blog, so those are omitted rather than filled with unverified material — DeepMind's AlphaGenome 2 and AlphaProof Code announcements and OpenAI's new science blog, covered elsewhere recently, both predate this week's window. The math-papers item above is flagged in-line as unusually low-confidence: titles and categories are confirmed against arXiv's own listing pages, but we could not read the actual abstracts this week.
+</footer>
+
+</div>
+</body>
+</html>
